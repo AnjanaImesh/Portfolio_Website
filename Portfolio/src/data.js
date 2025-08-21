@@ -35,7 +35,7 @@ export const projects = [
     image:
       "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?q=80&w=1200&auto=format&fit=crop",
     tags: ["Spring Boot", "React", "MySQL", "Java", "JavaScript", "REST API"],
-    source: "https://github.com/AnjanaImesh/spring-react-mysql",
+    source: "https://github.com/AnjanaImesh/ITPM",
     demo: "https://spring-react-demo.vercel.app",
   },
  
@@ -46,7 +46,7 @@ export const projects = [
     image:
       "../assets/travelbudy.png",
     tags: ["Spring Boot", "React", "MySQL", "Java", "JavaScript", "REST API"],
-    source: "https://github.com/AnjanaImesh/travel-buddy",
+    source: "https://github.com/AnjanaImesh/Travel_Budy",
     demo: "https://travel-buddy-demo.vercel.app",
   },
   {
@@ -56,7 +56,7 @@ export const projects = [
     image:
       "../assets/Automotive.jpeg",
     tags: ["Express","Node.js","MongoDB","React","Tailwind CSS"],
-    source: "https://github.com/yourname/task-manager",
+    source: "https://github.com/AnjanaImesh/mr.Automotive",
     demo: "https://tasks-demo.example.com",
   },
 ];
