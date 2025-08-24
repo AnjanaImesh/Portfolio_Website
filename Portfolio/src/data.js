@@ -37,6 +37,7 @@ export const projects = [
     tags: ["Spring Boot", "React", "MySQL", "Java", "JavaScript", "REST API"],
     source: "https://github.com/AnjanaImesh/ITPM",
     demo: "https://spring-react-demo.vercel.app",
+    category: "Full Stack",
   },
  
   {
@@ -48,6 +49,7 @@ export const projects = [
     tags: ["Spring Boot", "React", "MySQL", "Java", "JavaScript", "REST API"],
     source: "https://github.com/AnjanaImesh/Travel_Budy",
     demo: "https://travel-buddy-demo.vercel.app",
+    category: "Full Stack",
   },
   {
     title: "Mr.Automotive",
@@ -58,6 +60,18 @@ export const projects = [
     tags: ["Express","Node.js","MongoDB","React","Tailwind CSS"],
     source: "https://github.com/AnjanaImesh/mr.Automotive",
     demo: "https://tasks-demo.example.com",
+    category: "Full Stack",
+  },
+  {
+    title: "E-Commerce UI/UX Design",
+    description:
+      "A comprehensive e-commerce platform design focusing on user experience and modern interface design. Features include intuitive navigation, responsive design, accessibility considerations, and user-centered design principles. The design emphasizes conversion optimization and seamless user journeys.",
+    image:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
+    tags: ["Figma", "Adobe XD", "Prototyping", "User Research", "Wireframing", "UI Design"],
+    source: "https://github.com/AnjanaImesh/ecommerce-ui-ux",
+    demo: "https://ecommerce-design-demo.vercel.app",
+    category: "UI/UX Design",
   },
 ];
 
