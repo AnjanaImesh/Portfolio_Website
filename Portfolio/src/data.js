@@ -4,7 +4,7 @@ export const personal = {
   tagline:
     "I build fast, reliable web apps and APIs — from pixel‑perfect UIs to production‑grade backends.",
   email: "mailto:$anjanaimesh600@gmail.com", // replace with your email or contact link
-  resumeUrl: "https://drive.google.com/file/d/17e32dlHFv1CR-TtIVdOtCKFbqyEOl0V1/view?usp=sharing", // replace with your CV link if available
+  resumeUrl: "https://drive.google.com/file/d/1K55Dfkjg1YrpAgd3m9XFwoLzUeRsp1Kj/view?usp=sharing", // replace with your CV link if available
   location: "Remote • Open to opportunities",
 };
 
