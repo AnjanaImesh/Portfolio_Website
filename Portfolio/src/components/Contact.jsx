@@ -1,215 +1,221 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { personal, socials } from '../data.js'
+import React, { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
+import { personal } from '../data.js'
+import useReveal from '../hooks/useReveal.js'
+
+const SERVICE_ID = 'service_h4apch1'
+const TEMPLATE_ID = 'template_6072hts'
+const PUBLIC_KEY = 'vS4-fXR-yhzGRdmyW'
 
 export default function Contact() {
-  const contactRef = useRef(null)
-  const contactGridRef = useRef(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
+  const ref = useReveal()
+  const formRef = useRef(null)
+  const [sending, setSending] = useState(false)
+  const [result, setResult] = useState(null)
+  const [focused, setFocused] = useState(null)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (contactGridRef.current) observer.observe(contactGridRef.current)
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = async (e) => {
+  const send = async (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('sending')
-    
+    setSending(true)
+    setResult(null)
     try {
-      // Send email using EmailJS
-      const result = await emailjs.send(
-        'service_h4apch1', // You'll get this from EmailJS
-        'template_6072hts', // You'll get this from EmailJS
-        {
-          to_email: 'anjanaimesh600@gmail.com',
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          reply_to: formData.email
-        },
-        'vS4-fXR-yhzGRdmyW' // You'll get this from EmailJS
-      )
-      
-      if (result.status === 200) {
-        setSubmitStatus('success')
-        setFormData({ name: '', email: '', message: '' })
-        // Reset form after success
-        setTimeout(() => setSubmitStatus(null), 3000)
-      } else {
-        throw new Error('Failed to send email')
-      }
-    } catch (error) {
-      console.error('Email error:', error)
-      setSubmitStatus('error')
-      // Reset error after 3 seconds
-      setTimeout(() => setSubmitStatus(null), 3000)
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+      setResult('success')
+      formRef.current.reset()
+    } catch {
+      setResult('error')
     } finally {
-      setIsSubmitting(false)
+      setSending(false)
+      setTimeout(() => setResult(null), 5000)
     }
   }
 
+  const s = {
+    section: { padding: 'var(--py) var(--px)' },
+    inner: {
+      maxWidth: 'var(--container)', margin: '0 auto',
+      display: 'grid', gridTemplateColumns: '1fr', gap: 48,
+    },
+    label: {
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      padding: '6px 14px', borderRadius: 'var(--r-pill)',
+      border: '1px solid var(--border)', fontSize: '0.8rem',
+      fontWeight: 500, color: 'var(--text-2)', textTransform: 'uppercase',
+      letterSpacing: '0.08em', marginBottom: 16,
+    },
+    h2: {
+      fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4.5vw, 3.2rem)',
+      fontWeight: 700, lineHeight: 1.1, color: 'var(--text)',
+      letterSpacing: '-0.02em', marginBottom: 16,
+    },
+    desc: {
+      fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-2)', maxWidth: 480,
+      marginBottom: 32,
+    },
+    info: { display: 'flex', flexDirection: 'column', gap: 20 },
+    infoItem: {
+      display: 'flex', alignItems: 'center', gap: 14,
+    },
+    infoIcon: {
+      width: 48, height: 48, borderRadius: 14,
+      background: 'var(--surface)', border: '1px solid var(--border)',
+      display: 'grid', placeItems: 'center', color: 'var(--accent)',
+      flexShrink: 0,
+    },
+    infoLabel: { fontSize: '0.82rem', color: 'var(--text-2)' },
+    infoVal: { fontSize: '0.95rem', color: 'var(--text)', fontWeight: 500, marginTop: 2 },
+    form: {
+      padding: 'clamp(20px, 4vw, 36px) clamp(16px, 3.5vw, 32px)', borderRadius: 'var(--r-lg)',
+      border: '1px solid var(--border)', background: 'var(--surface)',
+    },
+    formTitle: {
+      fontFamily: 'var(--font-display)', fontSize: '1.3rem',
+      fontWeight: 600, color: 'var(--text)', marginBottom: 24,
+    },
+    row: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 },
+    group: { marginBottom: 16 },
+    labelText: {
+      display: 'block', fontSize: '0.82rem', fontWeight: 500,
+      color: 'var(--text-2)', marginBottom: 8, textTransform: 'uppercase',
+      letterSpacing: '0.04em',
+    },
+    input: (isFoc) => ({
+      width: '100%', padding: '14px 18px', borderRadius: 14,
+      border: '1px solid',
+      borderColor: isFoc ? 'var(--accent)' : 'var(--border)',
+      background: 'var(--bg)', color: 'var(--text)',
+      fontSize: '0.95rem', fontFamily: 'var(--font-body)',
+      transition: 'border-color var(--t)',
+      outline: 'none', boxSizing: 'border-box',
+    }),
+    textarea: (isFoc) => ({
+      width: '100%', padding: '14px 18px', borderRadius: 14,
+      border: '1px solid',
+      borderColor: isFoc ? 'var(--accent)' : 'var(--border)',
+      background: 'var(--bg)', color: 'var(--text)',
+      fontSize: '0.95rem', fontFamily: 'var(--font-body)',
+      transition: 'border-color var(--t)',
+      outline: 'none', resize: 'vertical', minHeight: 130, boxSizing: 'border-box',
+    }),
+    btn: {
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+      width: '100%', padding: '16px 32px', borderRadius: 'var(--r-pill)',
+      background: 'var(--accent)', color: '#050505',
+      fontWeight: 600, fontSize: '1rem', marginTop: 8,
+      transition: 'transform var(--t), box-shadow var(--t), opacity var(--t)',
+      boxShadow: '0 4px 24px rgba(200,243,29,0.18)',
+      opacity: sending ? 0.7 : 1, cursor: sending ? 'wait' : 'pointer',
+    },
+    alert: (type) => ({
+      padding: '14px 20px', borderRadius: 14, marginTop: 16,
+      fontSize: '0.9rem', fontWeight: 500, textAlign: 'center',
+      border: '1px solid',
+      ...(type === 'success'
+        ? { background: 'rgba(200,243,29,0.08)', borderColor: 'var(--accent)', color: 'var(--accent)' }
+        : { background: 'rgba(255,68,68,0.08)', borderColor: 'var(--error)', color: 'var(--error)' }
+      ),
+    }),
+  }
+
   return (
-    <section id="contact" ref={contactRef}>
-      <div className="container">
-        <div className="section-header">
-          <div className="section-kicker">Contact</div>
-          <h2 className="section-title">Let's build something amazing</h2>
-        </div>
+    <section id="contact" style={s.section}>
+      <div style={s.inner} className="rv contact-grid" ref={ref}>
+        <div>
+          <div style={s.label}>
+            <span style={{ color: 'var(--accent)' }}>◆</span> Get in Touch
+          </div>
+          <h2 style={s.h2}>
+            Let's build something <span style={{ color: 'var(--accent)' }}>great</span>
+          </h2>
+          <p style={s.desc}>
+            Have a project in mind or just want to chat? I'm always open to discussing new opportunities.
+          </p>
 
-        <div className="contact-grid fade-in-up" ref={contactGridRef}>
-          <div className="contact-card">
-            <h3 className="contact-title">Get in touch</h3>
-            <p className="contact-description">
-              Available for freelance, contract, or full‑time roles. Let's discuss your next project!
-            </p>
-            
-            <div className="contact-actions">
-              <a className="contact-btn primary" href={`mailto:$anjanaimesh600@gmail.com`}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                <span>Email me</span>
-              </a>
-              
-              <a className="contact-btn secondary" href="https://www.linkedin.com/in/anjanaimesh" target="_blank" rel="noreferrer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.07 0 4.82 2.68 4.82 6.16V23h-4v-5.88c0-1.4-.03-3.2-1.95-3.2-1.96 0-2.26 1.52-2.26 3.1V23h-4z"/>
-                </svg>
-                <span>Connect on LinkedIn</span>
-              </a>
+          <div style={s.info}>
+            <div style={s.infoItem}>
+              <div style={s.infoIcon}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div style={s.infoLabel}>Email</div>
+                <div style={s.infoVal}>{personal.email}</div>
+              </div>
             </div>
-
-            <div className="social-links">
-              <span className="social-label">Follow me on</span>
-              <div className="social-icons">
-                <a className="social-icon" href="https://github.com/AnjanaImesh" target="_blank" rel="noreferrer" title="GitHub">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 .5A12 12 0 0 0 0 12.7c0 5.38 3.44 9.94 8.21 11.55.6.12.82-.27.82-.59 0-.29-.01-1.05-.02-2.06-3.34.75-4.04-1.66-4.04-1.66-.55-1.44-1.35-1.82-1.35-1.82-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.28 1.86 1.28 1.08 1.9 2.83 1.35 3.52 1.03.11-.81.42-1.35.76-1.66-2.67-.31-5.47-1.37-5.47-6.1 0-1.35.47-2.45 1.25-3.31-.13-.31-.54-1.56.12-3.24 0 0 1.01-.33 3.3 1.25a11.2 11.2 0 0 1 6 0c2.29-1.58 3.3-1.25 3.3-1.25.66 1.68.25 2.93.12 3.24.78.86 1.25 1.96 1.25 3.31 0 4.74-2.8 5.78-5.48 6.09.43.37.81 1.1.81 2.23 0 1.61-.02 2.91-.02 3.31 0 .32.22.71.83.59A12.03 12.03 0 0 0 24 12.71 12 12 0 0 0 12 .5z"/>
-                  </svg>
-                </a>
-                <a className="social-icon" href="https://www.behance.net/anjanaz" target="_blank" rel="noreferrer" title="Behance">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M22 7h-7V5h7v2zm1.5 10c0 1.38-1.12 2.5-2.5 2.5H16V7h4.5C21.88 7 23 8.12 23 9.5v7.5zM16 7v10h-3V7h3zM9.5 7H13v10H9.5c-1.38 0-2.5-1.12-2.5-2.5V9.5C7 8.12 8.12 7 9.5 7zM7 9.5v5c0 1.38-1.12 2.5-2.5 2.5S2 15.88 2 14.5v-5C2 8.12 3.12 7 4.5 7S7 8.12 7 9.5z"/>
-                  </svg>
-                </a>
+            <div style={s.infoItem}>
+              <div style={s.infoIcon}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div style={s.infoLabel}>Location</div>
+                <div style={s.infoVal}>{personal.location}</div>
               </div>
             </div>
           </div>
-
-          <form className="contact-card contact-form" onSubmit={handleSubmit}>
-            <h3 className="contact-title">Send a message</h3>
-            <div className="form-fields">
-              <div className="input-group">
-                <label htmlFor="name" className="input-label">Name</label>
-                <input 
-                  className="contact-input" 
-                  id="name"
-                  type="text" 
-                  name="name" 
-                  placeholder="Your name" 
-                  required 
-                  value={formData.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-              
-              <div className="input-group">
-                <label htmlFor="email" className="input-label">Email</label>
-                <input 
-                  className="contact-input" 
-                  id="email"
-                  type="email" 
-                  name="email" 
-                  placeholder="your.email@example.com" 
-                  required 
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-              </div>
-              
-              <div className="input-group">
-                <label htmlFor="message" className="input-label">Message</label>
-                <textarea 
-                  className="contact-textarea" 
-                  id="message"
-                  name="message" 
-                  placeholder="Tell me about your project..." 
-                  rows="5" 
-                  required 
-                  value={formData.message}
-                  onChange={handleInputChange}
-                />
-              </div>
-              
-                             <button 
-                 className={`submit-btn ${isSubmitting ? 'loading' : ''} ${submitStatus === 'success' ? 'success' : ''} ${submitStatus === 'error' ? 'error' : ''}`} 
-                 type="submit"
-                 disabled={isSubmitting}
-               >
-                 {isSubmitting ? (
-                   <>
-                     <div className="spinner"></div>
-                     <span>Sending...</span>
-                   </>
-                 ) : submitStatus === 'success' ? (
-                   <>
-                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                       <polyline points="20,6 9,17 4,12"/>
-                     </svg>
-                     <span>Message sent!</span>
-                   </>
-                 ) : submitStatus === 'error' ? (
-                   <>
-                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                       <circle cx="12" cy="12" r="10"/>
-                       <line x1="15" y1="9" x2="9" y2="15"/>
-                       <line x1="9" y1="9" x2="15" y2="15"/>
-                     </svg>
-                     <span>Failed to send</span>
-                   </>
-                 ) : (
-                   <>
-                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                       <line x1="22" y1="2" x2="11" y2="13"/>
-                       <polygon points="22,2 15,22 11,13 2,9 22,2"/>
-                     </svg>
-                     <span>Send message</span>
-                   </>
-                 )}
-               </button>
-            </div>
-          </form>
         </div>
+
+        <form ref={formRef} onSubmit={send} style={s.form}>
+          <div style={s.formTitle}>Send a message</div>
+          <div style={s.row} className="contact-row">
+            <div style={s.group}>
+              <label style={s.labelText}>Name</label>
+              <input name="from_name" required placeholder="John Doe"
+                style={s.input(focused === 'name')}
+                onFocus={() => setFocused('name')} onBlur={() => setFocused(null)} />
+            </div>
+            <div style={s.group}>
+              <label style={s.labelText}>Email</label>
+              <input name="from_email" type="email" required placeholder="john@example.com"
+                style={s.input(focused === 'email')}
+                onFocus={() => setFocused('email')} onBlur={() => setFocused(null)} />
+            </div>
+          </div>
+          <div style={s.group}>
+            <label style={s.labelText}>Subject</label>
+            <input name="subject" required placeholder="Project discussion"
+              style={s.input(focused === 'subj')}
+              onFocus={() => setFocused('subj')} onBlur={() => setFocused(null)} />
+          </div>
+          <div style={s.group}>
+            <label style={s.labelText}>Message</label>
+            <textarea name="message" required placeholder="Tell me about your project..."
+              style={s.textarea(focused === 'msg')}
+              onFocus={() => setFocused('msg')} onBlur={() => setFocused(null)} />
+          </div>
+          <input type="hidden" name="to_email" value="anjanaimesh600@gmail.com" />
+          <button type="submit" disabled={sending} style={s.btn}
+            onMouseEnter={e => { if (!sending) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 40px rgba(200,243,29,0.3)' }}}
+            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 24px rgba(200,243,29,0.18)' }}
+          >
+            {sending ? (
+              <><span className="spinner" /> Sending...</>
+            ) : (
+              <>Send Message
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </>
+            )}
+          </button>
+
+          {result && (
+            <div style={s.alert(result)}>
+              {result === 'success'
+                ? '✓ Message sent successfully! I\'ll get back to you soon.'
+                : '✕ Failed to send. Please try again or email directly.'}
+            </div>
+          )}
+        </form>
       </div>
+
+      <style>{`
+        @media(min-width:768px){
+          .contact-grid{grid-template-columns:0.9fr 1.1fr!important;align-items:start}
+        }
+        @media(max-width:550px){
+          .contact-row{grid-template-columns:1fr!important}
+        }
+        @media(max-width:480px){
+          .contact-grid{gap:32px!important}
+        }
+      `}</style>
     </section>
   )
 }

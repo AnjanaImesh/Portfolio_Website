@@ -2,91 +2,129 @@ export const personal = {
   name: "Anjana Imesh",
   role: "Full Stack Developer",
   tagline:
-    "I build fast, reliable web apps and APIs — from pixel‑perfect UIs to production‑grade backends.",
-  email: "mailto:$anjanaimesh600@gmail.com", // replace with your email or contact link
-  resumeUrl: "https://drive.google.com/file/d/1K55Dfkjg1YrpAgd3m9XFwoLzUeRsp1Kj/view?usp=sharing", // replace with your CV link if available
-  location: "Remote • Open to opportunities",
+    "I craft fast, reliable web apps and APIs - from pixel-perfect UIs to production-grade backends.",
+  email: "anjanaimesh600@gmail.com",
+  resumeUrl:
+    "https://drive.google.com/file/d/1K55Dfkjg1YrpAgd3m9XFwoLzUeRsp1Kj/view?usp=sharing",
+  location: "Sri Lanka • Remote",
 };
 
-export const skills = [
-  "Java/Spring Boot",
-  "JavaScript/TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Express",
-  "NestJS",
-  "MySQL",
-  "PostgreSQL",
-  "MongoDB",
-  "Prisma/TypeORM",
-  "Docker",
-  "AWS",
-  "CI/CD",
-  "REST/GraphQL",
-  "Testing (Jest/Playwright)",
+export const services = [
+  {
+    icon: "code",
+    title: "Web Development",
+    desc: "Performant, accessible web applications with modern frameworks and clean code.",
+  },
+  {
+    icon: "brush",
+    title: "UI / UX Design",
+    desc: "Intuitive interfaces with a sharp eye for usability, spacing, and visual flow.",
+  },
+  {
+    icon: "api",
+    title: "API Architecture",
+    desc: "Robust RESTful and GraphQL APIs designed to scale with your business.",
+  },
+  {
+    icon: "cloud",
+    title: "Cloud & DevOps",
+    desc: "AWS deployments, CI/CD pipelines, Docker containers — production-ready.",
+  },
 ];
+
+export const skills = {
+  Frontend: ["React", "Next.js", "JavaScript", "TypeScript"],
+  Backend: ["Java / Spring Boot", "Node.js", "Express", "NestJS"],
+  Database: ["MySQL", "PostgreSQL", "MongoDB", "Prisma / TypeORM"],
+  DevOps: ["Docker", "AWS", "CI / CD", "REST / GraphQL"],
+  Testing: ["Jest", "Playwright"],
+};
 
 export const projects = [
   {
     title: "Waste Wise",
-    description:
-      "The E-Garbage Management System is a web-based application designed to streamline waste collection and management in urban areas. It helps citizens and municipal authorities manage garbage bin locations, monitor collection schedules, and report waste-related issues efficiently.",
+    outcome: "Streamlined urban waste collection for municipalities.",
+    desc:
+      "Web app for managing garbage bin locations, schedules, and issue reporting - helping cities stay clean.",
     image:
       "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Spring Boot", "React", "MySQL", "Java", "JavaScript", "REST API"],
-    source: "https://github.com/AnjanaImesh/ITPM",
-    demo: "https://spring-react-demo.vercel.app",
-    category: "Full Stack",
+    tech: ["Spring Boot", "React", "MySQL", "REST API"],
+    github: "https://github.com/AnjanaImesh/ITPM",
+    live: "https://spring-react-demo.vercel.app",
+    category: "Web",
+    featured: true,
   },
- 
   {
     title: "Travel Buddy",
-    description:
-      "Travel Buddy – A Skill-Sharing Travel Experience Platform. Our team of four developed Travel Buddy, an interactive platform designed for travelers to share their experiences, photos, and videos from their journeys. Users can rate places they've visited, leave comments, and explore new destinations recommended by fellow travelers.",
-    image:
-      "../assets/travelbudy.png",
-    tags: ["Spring Boot", "React", "MySQL", "Java", "JavaScript", "REST API"],
-    source: "https://github.com/AnjanaImesh/Travel_Budy",
-    demo: "https://travel-buddy-demo.vercel.app",
-    category: "Full Stack",
+    outcome: "Skill-sharing travel platform - community driven.",
+    desc:
+      "Interactive platform for travelers to share experiences, rate destinations, and discover new places.",
+    image: null,
+    tech: ["Spring Boot", "React", "MySQL", "REST API"],
+    github: "https://github.com/AnjanaImesh/Travel_Budy",
+    live: "https://travel-buddy-demo.vercel.app",
+    category: "Web",
   },
   {
     title: "Mr.Automotive",
-    description:
-      "Mr.Automotive is a Vehicle Service Management System built with the MERN stack. It helps manage service bookings, payments, customers, and service history, providing an efficient platform for both administrators and customers to handle vehicle services smoothly.",
-    image:
-      "../assets/Automotive.jpeg",
-    tags: ["Express","Node.js","MongoDB","React","Tailwind CSS"],
-    source: "https://github.com/AnjanaImesh/mr.Automotive",
-    demo: "https://tasks-demo.example.com",
-    category: "Full Stack",
+    outcome: "End-to-end vehicle service management.",
+    desc:
+      "MERN-stack system for managing service bookings, payments, customers, and service history.",
+    image: null,
+    tech: ["Node.js", "Express", "MongoDB", "React"],
+    github: "https://github.com/AnjanaImesh/mr.Automotive",
+    live: "https://tasks-demo.example.com",
+    category: "Web",
   },
   {
-    title: "E-Commerce UI/UX Design",
-    description:
-      "A comprehensive e-commerce platform design focusing on user experience and modern interface design. Features include intuitive navigation, responsive design, accessibility considerations, and user-centered design principles. The design emphasizes conversion optimization and seamless user journeys.",
+    title: "E-Commerce UI/UX",
+    outcome: "Conversion-optimized shopping experience.",
+    desc:
+      "Comprehensive e-commerce design focusing on accessibility, responsive layouts, and seamless user journeys.",
     image:
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
-    tags: ["Figma", "Adobe XD", "Prototyping", "User Research", "Wireframing", "UI Design"],
-    source: "https://github.com/AnjanaImesh/ecommerce-ui-ux",
-    demo: "https://ecommerce-design-demo.vercel.app",
-    category: "UI/UX Design",
+    tech: ["Figma", "Adobe XD", "Prototyping", "UI Design"],
+    github: "https://github.com/AnjanaImesh/ecommerce-ui-ux",
+    live: "https://ecommerce-design-demo.vercel.app",
+    category: "UI/UX",
   },
 ];
 
 export const about = {
   summary:
-    "I’m a full‑stack developer focused on building delightful experiences and scalable systems. I care about good DX, clean architecture, and measurable impact.",
+    "I'm a full-stack developer who loves turning complex problems into clean, scalable solutions. I care deeply about developer experience, elegant architecture, and measurable impact.",
   stats: [
-    { label: "Years", value: "3+" },
-    { label: "Projects", value: "15+" },
-    { label: "Clients", value: "8+" },
+    { label: "Years Exp.", value: 3 },
+    { label: "Projects", value: 15 },
+    { label: "Happy Clients", value: 8 },
+  ],
+  values: [
+    { icon: "target", title: "Problem Solving", desc: "Turning complex challenges into elegant, maintainable solutions." },
+    { icon: "zap", title: "Performance", desc: "Every project optimized for speed, scalability, and UX." },
+    { icon: "users", title: "Collaboration", desc: "Working seamlessly with designers, PMs, and engineering teams." },
   ],
 };
 
-export const socials = {
-  github: "https://github.com/AnjanaImesh",
-  linkedin: "https://www.linkedin.com/in/anjanaimesh",
-  behance: "https://www.behance.net/anjanaz",
-};
+export const testimonials = [
+  {
+    text: "Anjana delivered exceptional work on our platform. His attention to detail and technical depth made our project a success.",
+    name: "Sarah Chen",
+    role: "Product Manager, TechCorp",
+  },
+  {
+    text: "Creative solutions to complex problems and always on time. One of the best developers I've worked with.",
+    name: "Michael Torres",
+    role: "CTO, StartupXYZ",
+  },
+  {
+    text: "The quality of code and design thinking Anjana brings is outstanding. He goes above and beyond.",
+    name: "Emily Johnson",
+    role: "Design Lead, CreativeStudio",
+  },
+];
+
+export const socials = [
+  { label: "GitHub", url: "https://github.com/AnjanaImesh" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/anjanaimesh" },
+  { label: "Instagram", url: "https://www.behance.net/anjanaz" },
+];

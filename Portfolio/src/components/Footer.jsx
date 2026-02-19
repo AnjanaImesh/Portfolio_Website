@@ -1,80 +1,112 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { personal, socials } from '../data.js'
+import useReveal from '../hooks/useReveal.js'
+
+const SOCIAL_ICONS = {
+  GitHub: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>,
+  LinkedIn: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>,
+  Twitter: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>,
+  Instagram: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>,
+}
 
 export default function Footer() {
+  const ref = useReveal()
   const year = new Date().getFullYear()
-  const footerRef = useRef(null)
-  const footerContentRef = useRef(null)
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (footerContentRef.current) observer.observe(footerContentRef.current)
-
-    return () => observer.disconnect()
-  }, [])
+  const s = {
+    section: {
+      padding: '80px var(--px) 40px', borderTop: '1px solid var(--border)',
+    },
+    inner: { maxWidth: 'var(--container)', margin: '0 auto' },
+    cta: {
+      textAlign: 'center', marginBottom: 64,
+    },
+    bigText: {
+      fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,6vw,4.5rem)',
+      fontWeight: 800, lineHeight: 1.05, color: 'var(--text)',
+      letterSpacing: '-0.03em', marginBottom: 24,
+    },
+    ctaBtn: {
+      display: 'inline-flex', alignItems: 'center', gap: 12,
+      padding: 'clamp(14px, 3vw, 18px) clamp(28px, 5vw, 40px)', borderRadius: 'var(--r-pill)',
+      background: 'var(--accent)', color: '#050505',
+      fontWeight: 700, fontSize: '1.1rem',
+      transition: 'transform var(--t), box-shadow var(--t)',
+      boxShadow: '0 4px 24px rgba(200,243,29,0.18)',
+    },
+    bottom: {
+      display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center',
+      gap: 20, paddingTop: 32, borderTop: '1px solid var(--border)',
+    },
+    copy: {
+      fontSize: '0.85rem', color: 'var(--text-2)',
+    },
+    socials: {
+      display: 'flex', gap: 8,
+    },
+    socLink: {
+      width: 42, height: 42, borderRadius: 12,
+      display: 'grid', placeItems: 'center',
+      color: 'var(--text-2)', border: '1px solid var(--border)',
+      transition: 'all var(--t)',
+    },
+    back: {
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      padding: '10px 20px', borderRadius: 'var(--r-pill)',
+      border: '1px solid var(--border)', fontSize: '0.85rem',
+      fontWeight: 500, color: 'var(--text-2)',
+      transition: 'all var(--t)',
+    },
+  }
 
   return (
-    <footer ref={footerRef} className="footer">
-      <div className="container">
-        <div className="footer-content fade-in-up" ref={footerContentRef}>
-          <div className="footer-main">
-            <div className="footer-brand">
-              <div className="footer-logo">
-                <span className="logo-text">AI</span>
-              </div>
-              <span className="footer-name">{personal.name}</span>
-            </div>
-            
-            <div className="footer-nav">
-              <a href="#about">About</a>
-              <a href="#skills">Skills</a>
-              <a href="#projects">Projects</a>
-              <a href="#contact">Contact</a>
-            </div>
-            
-            <div className="footer-social">
-              <a href={socials.github} target="_blank" rel="noreferrer" className="social-icon" title="GitHub">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 .5A12 12 0 0 0 0 12.7c0 5.38 3.44 9.94 8.21 11.55.6.12.82-.27.82-.59 0-.29-.01-1.05-.02-2.06-3.34.75-4.04-1.66-4.04-1.66-.55-1.44-1.35-1.82-1.35-1.82-1.1-.78.08-.76.08-.76 1.22.09 1.86 1.28 1.86 1.28 1.08 1.9 2.83 1.35 3.52 1.03.11-.81.42-1.35.76-1.66-2.67-.31-5.47-1.37-5.47-6.1 0-1.35.47-2.45 1.25-3.31-.13-.31-.54-1.56.12-3.24 0 0 1.01-.33 3.3 1.25a11.2 11.2 0 0 1 6 0c2.29-1.58 3.3-1.25 3.3-1.25.66 1.68.25 2.93.12 3.24.78.86 1.25 1.96 1.25 3.31 0 4.74-2.8 5.78-5.48 6.09.43.37.81 1.1.81 2.23 0 1.61-.02 2.91-.02 3.31 0 .32.22.71.83.59A12.03 12.03 0 0 0 24 12.71 12 12 0 0 0 12 .5z"/>
-                </svg>
-              </a>
-              <a href={socials.linkedin} target="_blank" rel="noreferrer" className="social-icon" title="LinkedIn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.07 0 4.82 2.68 4.82 6.16V23h-4v-5.88c0-1.4-.03-3.2-1.95-3.2-1.96 0-2.26 1.52-2.26 3.1V23h-4z"/>
-                </svg>
-              </a>
-              <a href={socials.twitter} target="_blank" rel="noreferrer" className="social-icon" title="Twitter">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.95 4.57c-.88.39-1.83.66-2.82.78a4.93 4.93 0 0 0 2.16-2.71 9.86 9.86 0 0 1-3.13 1.2A4.92 4.92 0 0 0 11.72 8a13.95 13.95 0 0 1-10.14-5.14 4.92 4.92 0 0 0 1.52 6.57 4.91 4.91 0 0 1-2.23-.62v.06a4.92 4.92 0 0 0 3.95 4.82 4.95 4.95 0 0 1-2.22.08 4.93 4.93 0 0 0 4.6 3.41A9.88 9.88 0 0 1 0 19.54a13.95 13.95 0 0 0 7.55 2.21c9.05 0 14-7.5 14-14l-.02-.64A9.94 9.94 0 0 0 24 4.59l-.05-.02z"/>
-                </svg>
-              </a>
-            </div>
+    <footer style={s.section}>
+      <div style={s.inner} className="rv" ref={ref}>
+        <div style={s.cta}>
+          <h2 style={s.bigText}>
+            Have a project?<br />
+            <span style={{ color: 'var(--accent)' }}>Let's talk.</span>
+          </h2>
+          <a href={`mailto:${personal.email}`} style={s.ctaBtn}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 12px 48px rgba(200,243,29,0.3)' }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 24px rgba(200,243,29,0.18)' }}
+          >
+            Start a conversation
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+
+        <div style={s.bottom} className="footer-bottom">
+          <div style={s.copy}>
+            © {year} {personal.name}. Crafted with care.
           </div>
 
-          <div className="footer-bottom">
-            <span className="copyright">© {year} {personal.name} </span>
-            <button 
-              className="back-to-top-btn"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              aria-label="Back to top"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M18 15l-6-6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
+          <div style={s.socials}>
+            {socials.map(soc => (
+              <a key={soc.label} href={soc.url} target="_blank" rel="noopener noreferrer"
+                style={s.socLink} aria-label={soc.label}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.background = 'var(--surface)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-2)'; e.currentTarget.style.background = 'transparent' }}
+              >
+                {SOCIAL_ICONS[soc.label] || <span>{soc.label[0]}</span>}
+              </a>
+            ))}
           </div>
+
+          <a href="#" style={s.back}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-2)' }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            Back to top
+          </a>
         </div>
       </div>
+      <style>{`
+        @media(min-width:768px){
+          .footer-bottom{justify-content:space-between!important}
+        }
+      `}</style>
     </footer>
   )
 }
