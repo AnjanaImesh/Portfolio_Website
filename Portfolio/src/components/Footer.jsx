@@ -78,7 +78,7 @@ export default function Footer() {
 
         <div style={s.bottom} className="footer-bottom">
           <div style={s.copy}>
-            © {year} {personal.name}. Crafted with care.
+            © {year} {personal.name}.
           </div>
 
           <div style={s.socials}>

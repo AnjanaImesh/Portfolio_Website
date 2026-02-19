@@ -105,7 +105,7 @@ export default function Hero() {
             people <span style={s.accent}>love.</span>
           </h1>
           <p style={s.sub}>
-            {personal.tagline}. Crafting high-impact web experiences with clean code and thoughtful design.
+            {personal.tagline}Crafting high-impact web experiences with clean code and thoughtful design.
           </p>
           <div style={s.btns}>
             <a href="#work" style={s.primary}

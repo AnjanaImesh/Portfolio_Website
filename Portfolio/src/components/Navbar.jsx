@@ -117,6 +117,12 @@ export default function Navbar() {
 
         <div style={s.actions}>
           <ThemeToggle />
+          <a href={personal.resumeUrl} target="_blank" rel="noopener noreferrer"
+            className="desk-resume"
+            style={{ ...s.link, marginRight: 4, display: 'none' }}
+            onMouseEnter={e => { e.currentTarget.style.color = 'var(--text)'; e.currentTarget.style.background = 'var(--surface)' }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-2)'; e.currentTarget.style.background = 'transparent' }}
+          >Resume</a>
           <a href="#contact" style={{ ...s.cta, display: 'none' }} className="desk-cta"
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(200,243,29,0.3)' }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(200,243,29,0.18)' }}
@@ -136,6 +142,9 @@ export default function Navbar() {
             onMouseLeave={e => e.currentTarget.style.color = 'var(--text-2)'}
           >{l.label}</a>
         ))}
+        <a href={personal.resumeUrl} target="_blank" rel="noopener noreferrer"
+          style={{ ...s.drawerLink, fontSize: '1.2rem', marginTop: 8 }}
+          onClick={close}>Resume</a>
         <a href="#contact" style={{ ...s.cta, marginTop: 16 }} onClick={close}>Let's Talk</a>
       </nav>
 
@@ -143,10 +152,12 @@ export default function Navbar() {
       <style>{`
         .desk-nav{display:none!important}
         .desk-cta{display:none!important}
+        .desk-resume{display:none!important}
         .mob-burger{display:flex!important}
         @media(min-width:768px){
           .desk-nav{display:flex!important}
           .desk-cta{display:inline-flex!important}
+          .desk-resume{display:inline-flex!important}
           .mob-burger{display:none!important}
         }
       `}</style>
