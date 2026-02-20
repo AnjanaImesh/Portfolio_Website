@@ -47,10 +47,10 @@ export const projects = [
     desc:
       "Web app for managing garbage bin locations, schedules, and issue reporting - helping cities stay clean.",
     image:
-      "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1574974671999-24b7dfbb0d53?q=80&w=1200&auto=format&fit=crop",
     tech: ["Spring Boot", "React", "MySQL", "REST API"],
     github: "https://github.com/AnjanaImesh/ITPM",
-    live: "https://spring-react-demo.vercel.app",
+    live: "#",
     category: "Web",
     featured: true,
   },
@@ -62,7 +62,7 @@ export const projects = [
     image: null,
     tech: ["Spring Boot", "React", "MySQL", "REST API"],
     github: "https://github.com/AnjanaImesh/Travel_Budy",
-    live: "https://travel-buddy-demo.vercel.app",
+    live: "#",
     category: "Web",
   },
   {
@@ -73,7 +73,7 @@ export const projects = [
     image: null,
     tech: ["Node.js", "Express", "MongoDB", "React"],
     github: "https://github.com/AnjanaImesh/mr.Automotive",
-    live: "https://tasks-demo.example.com",
+    live: "#",
     category: "Web",
   },
   {
@@ -84,8 +84,8 @@ export const projects = [
     image:
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop",
     tech: ["Figma", "Adobe XD", "Prototyping", "UI Design"],
-    github: "https://github.com/AnjanaImesh/ecommerce-ui-ux",
-    live: "https://ecommerce-design-demo.vercel.app",
+    github: "https://www.behance.net/gallery/225928345/Vehicle-Service-Website-UI",
+    live: "#",
     category: "UI/UX",
   },
 ];
