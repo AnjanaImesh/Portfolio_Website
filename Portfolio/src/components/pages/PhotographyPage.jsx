@@ -3,26 +3,29 @@ import { creativeVentures } from '../../data/portfolioData.js'
 
 export default function PhotographyPage({ onNavigate }) {
   return (
-    <div style={{ paddingTop: 'clamp(6.5rem, 10vw, 9rem)', minHeight: '80vh', backgroundColor: 'var(--bg)' }}>
+    <div style={{ paddingTop: 'clamp(6rem, 10vw, 8.5rem)', minHeight: '80vh', backgroundColor: 'var(--bg)' }}>
       <div className="container">
         {/* Header Bar */}
-        <div className="section-header-bar">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index">VISUAL PRACTICES</span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              / DEDICATED CREATIVE HUBS & VENTURES
-            </span>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '1.2rem',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          <div>
+            <div className="section-pill-tag" style={{ marginBottom: '0.6rem' }}>Visual Ventures</div>
+            <h1 className="display-section" style={{ margin: 0 }}>
+              Independent creative practices.
+            </h1>
           </div>
 
-          <span className="section-meta-right">SRI LANKA & REGIONAL ESSAYS</span>
+          <span className="meta-tag">SRI LANKA & REGIONAL ESSAYS</span>
         </div>
 
         {/* Page Title & Manifesto */}
@@ -30,7 +33,7 @@ export default function PhotographyPage({ onNavigate }) {
           <h1
             className="display-hero"
             style={{
-              fontSize: 'clamp(2.5rem, 6.5vw, 5.2rem)',
+              fontSize: 'clamp(2.4rem, 6vw, 4.8rem)',
               lineHeight: 0.95,
               marginBottom: '1.5rem',
               letterSpacing: '-0.04em',
@@ -43,7 +46,7 @@ export default function PhotographyPage({ onNavigate }) {
           <p
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: 'clamp(1.1rem, 1.8vw, 1.35rem)',
+              fontSize: 'clamp(1.05rem, 1.7vw, 1.3rem)',
               lineHeight: 1.6,
               color: 'var(--ink-secondary)',
               fontWeight: 350,
@@ -55,7 +58,7 @@ export default function PhotographyPage({ onNavigate }) {
           </p>
         </div>
 
-        {/* ── Visual Ventures Architectural Index (No Photo Card Clutter) ── */}
+        {/* ── Visual Ventures Architectural Index ── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(3.5rem, 7vw, 6rem)', marginBottom: '6rem' }}>
           {creativeVentures.map((venture, idx) => (
             <article
@@ -74,10 +77,10 @@ export default function PhotographyPage({ onNavigate }) {
                 <div
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.82rem',
+                    fontSize: '0.8rem',
                     letterSpacing: '0.1em',
                     color: 'var(--accent)',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.45rem',
                     fontWeight: 650,
                   }}
                 >
@@ -87,12 +90,12 @@ export default function PhotographyPage({ onNavigate }) {
                 <h2
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(2rem, 4vw, 3.4rem)',
+                    fontSize: 'clamp(1.9rem, 3.8vw, 3.2rem)',
                     fontWeight: 850,
                     letterSpacing: '-0.04em',
                     lineHeight: 1,
                     color: 'var(--ink)',
-                    marginBottom: '0.6rem',
+                    marginBottom: '0.5rem',
                   }}
                 >
                   {venture.name}
@@ -101,7 +104,7 @@ export default function PhotographyPage({ onNavigate }) {
                 <div
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.78rem',
+                    fontSize: '0.76rem',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                     color: 'var(--ink-muted)',
@@ -116,7 +119,7 @@ export default function PhotographyPage({ onNavigate }) {
                 <p
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '1.05rem',
+                    fontSize: '1.02rem',
                     lineHeight: 1.7,
                     color: 'var(--ink)',
                     marginBottom: '1.8rem',
@@ -161,15 +164,15 @@ export default function PhotographyPage({ onNavigate }) {
                   </ul>
                 </div>
 
-                {/* Direct Action Link */}
+                {/* Direct Action Link — Minimal Pill CTA */}
                 <div>
                   {venture.isInternal ? (
                     <button
                       type="button"
                       onClick={() => onNavigate?.(venture.url)}
-                      className="btn-sharp"
+                      className="btn-pill"
                     >
-                      <span>EXPLORE MOONORY PRACTICE</span>
+                      <span>Explore Moonory Practice</span>
                       <span>→</span>
                     </button>
                   ) : (
@@ -177,9 +180,9 @@ export default function PhotographyPage({ onNavigate }) {
                       href={venture.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-sharp"
+                      className="btn-pill"
                     >
-                      <span>VISIT OFFICIAL DESTINATION ({venture.name})</span>
+                      <span>Visit Official Destination ({venture.name})</span>
                       <span>↗</span>
                     </a>
                   )}

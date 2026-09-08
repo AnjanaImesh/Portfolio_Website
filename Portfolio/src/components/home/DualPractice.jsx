@@ -4,24 +4,23 @@ export default function DualPractice({ onNavigate }) {
   return (
     <section
       id="ethos"
-      className="section-dark-block"
       style={{
-        paddingTop: 'clamp(5.5rem, 10vw, 9.5rem)',
-        paddingBottom: 'clamp(5.5rem, 10vw, 9.5rem)',
+        paddingTop: 'clamp(5rem, 9vw, 8.5rem)',
+        paddingBottom: 'clamp(5rem, 9vw, 8.5rem)',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid var(--section-dark-border)',
-        borderBottom: '1px solid var(--section-dark-border)',
+        borderBottom: '1px solid var(--border)',
+        backgroundColor: 'var(--bg)',
       }}
     >
-      {/* ── Architectural SVG Shape System: Large Arc Crossing Coordinate Grid ── */}
+      {/* ── Architectural SVG Shape System: Subtle Coordinate Grid ── */}
       <div
         className="shape-arc-container"
         style={{
           inset: 0,
           width: '100%',
           height: '100%',
-          opacity: 0.25,
+          opacity: 0.5,
         }}
         aria-hidden="true"
       >
@@ -34,26 +33,26 @@ export default function DualPractice({ onNavigate }) {
           style={{ width: '100%', height: '100%' }}
         >
           {/* Engineering Technical Grid */}
-          <line x1="0" y1="200" x2="1440" y2="200" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="2 4" />
-          <line x1="0" y1="400" x2="1440" y2="400" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-          <line x1="0" y1="600" x2="1440" y2="600" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="2 4" />
-          <line x1="480" y1="0" x2="480" y2="800" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-          <line x1="960" y1="0" x2="960" y2="800" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+          <line x1="0" y1="200" x2="1440" y2="200" stroke="var(--border)" strokeWidth="1" strokeDasharray="3 6" />
+          <line x1="0" y1="400" x2="1440" y2="400" stroke="var(--border)" strokeWidth="1" />
+          <line x1="0" y1="600" x2="1440" y2="600" stroke="var(--border)" strokeWidth="1" strokeDasharray="3 6" />
+          <line x1="480" y1="0" x2="480" y2="800" stroke="var(--border)" strokeWidth="1" strokeDasharray="3 6" />
+          <line x1="960" y1="0" x2="960" y2="800" stroke="var(--border)" strokeWidth="1" strokeDasharray="3 6" />
 
           {/* Creative Practice Arc Crossing the Technical Grid */}
           <circle
             cx="960"
             cy="400"
-            r="320"
+            r="300"
             stroke="var(--accent)"
-            strokeWidth="1.5"
+            strokeWidth="1.2"
             strokeDasharray="6 8"
-            opacity="0.75"
+            opacity="0.4"
           />
           <circle
             cx="960"
             cy="400"
-            r="8"
+            r="6"
             fill="var(--accent)"
           />
         </svg>
@@ -61,43 +60,33 @@ export default function DualPractice({ onNavigate }) {
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {/* Section Header Bar */}
-        <div
-          className="section-header-bar"
-          style={{ borderBottomColor: 'var(--section-dark-border)' }}
-        >
+        <div className="section-header-bar">
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index" style={{ color: 'var(--accent)' }}>
-              01
-            </span>
+            <span className="section-index">01</span>
             <span
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.78rem',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                color: 'var(--section-dark-muted)',
+                color: 'var(--ink-muted)',
               }}
             >
               / IDENTITY & DISCIPLINE
             </span>
           </div>
 
-          <span
-            className="section-meta-right"
-            style={{ color: 'var(--section-dark-muted)' }}
-          >
-            THE DUAL PRACTICE
-          </span>
+          <span className="section-meta-right">THE DUAL PRACTICE</span>
         </div>
 
         {/* Central Typographic Manifesto */}
-        <div style={{ maxWidth: '1080px', marginBottom: 'clamp(4rem, 7vw, 6rem)' }}>
+        <div style={{ maxWidth: '1080px', marginBottom: 'clamp(3.5rem, 6vw, 5.5rem)' }}>
           <h2
             className="display-section"
             style={{
-              color: 'var(--section-dark-ink)',
+              color: 'var(--ink)',
               lineHeight: 1.02,
-              marginBottom: '2rem',
+              marginBottom: '1.8rem',
               letterSpacing: '-0.04em',
             }}
           >
@@ -108,9 +97,9 @@ export default function DualPractice({ onNavigate }) {
           <p
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: 'clamp(1.15rem, 2vw, 1.55rem)',
+              fontSize: 'clamp(1.1rem, 1.8vw, 1.45rem)',
               lineHeight: 1.55,
-              color: 'rgba(250, 250, 248, 0.85)',
+              color: 'var(--ink-secondary)',
               fontWeight: 350,
               maxWidth: '860px',
             }}
@@ -122,14 +111,14 @@ export default function DualPractice({ onNavigate }) {
           </p>
         </div>
 
-        {/* Comparative Typographic Columns (No Cards / Open Layout) */}
+        {/* Comparative Typographic Columns (Open, Airy Layout) */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr',
-            gap: 'clamp(3rem, 6vw, 5rem)',
-            borderTop: '1px solid var(--section-dark-border)',
-            paddingTop: 'clamp(2.5rem, 5vw, 4rem)',
+            gap: 'clamp(2.5rem, 5vw, 4.5rem)',
+            borderTop: '1px solid var(--border)',
+            paddingTop: 'clamp(2rem, 4vw, 3.5rem)',
           }}
           className="ethos-columns"
         >
@@ -138,10 +127,10 @@ export default function DualPractice({ onNavigate }) {
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.14em',
-                color: 'var(--section-dark-muted)',
-                marginBottom: '1rem',
+                fontSize: '0.74rem',
+                letterSpacing: '0.12em',
+                color: 'var(--ink-muted)',
+                marginBottom: '0.8rem',
               }}
             >
               [DOMAIN 01] / SOFTWARE ENGINEERING
@@ -150,11 +139,11 @@ export default function DualPractice({ onNavigate }) {
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 2.5vw, 2.1rem)',
+                fontSize: 'clamp(1.4rem, 2.3vw, 1.95rem)',
                 fontWeight: 750,
-                color: 'var(--section-dark-ink)',
+                color: 'var(--ink)',
                 letterSpacing: '-0.03em',
-                marginBottom: '1.2rem',
+                marginBottom: '1rem',
               }}
             >
               SYSTEMS, INTERFACES & SCALABLE LOGIC
@@ -163,9 +152,9 @@ export default function DualPractice({ onNavigate }) {
             <p
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.98rem',
+                fontSize: '0.96rem',
                 lineHeight: 1.7,
-                color: 'rgba(250, 250, 248, 0.72)',
+                color: 'var(--ink-secondary)',
                 marginBottom: '1.5rem',
               }}
             >
@@ -177,13 +166,13 @@ export default function DualPractice({ onNavigate }) {
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
+                fontSize: '0.74rem',
                 letterSpacing: '0.06em',
-                color: 'var(--accent)',
+                color: 'var(--ink-muted)',
                 textTransform: 'uppercase',
               }}
             >
-              SPRING BOOT • REACT • NODE.JS • POSTGRESQL • DOCKER
+              Spring Boot • React • Node.js • PostgreSQL • Docker
             </div>
           </div>
 
@@ -192,10 +181,10 @@ export default function DualPractice({ onNavigate }) {
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.14em',
+                fontSize: '0.74rem',
+                letterSpacing: '0.12em',
                 color: 'var(--accent)',
-                marginBottom: '1rem',
+                marginBottom: '0.8rem',
               }}
             >
               [DOMAIN 02] / VISUAL STORYTELLING
@@ -204,11 +193,11 @@ export default function DualPractice({ onNavigate }) {
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 2.5vw, 2.1rem)',
+                fontSize: 'clamp(1.4rem, 2.3vw, 1.95rem)',
                 fontWeight: 750,
-                color: 'var(--section-dark-ink)',
+                color: 'var(--ink)',
                 letterSpacing: '-0.03em',
-                marginBottom: '1.2rem',
+                marginBottom: '1rem',
               }}
             >
               LIGHT, GEOMETRY & HUMAN NARRATIVE
@@ -217,9 +206,9 @@ export default function DualPractice({ onNavigate }) {
             <p
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.98rem',
+                fontSize: '0.96rem',
                 lineHeight: 1.7,
-                color: 'rgba(250, 250, 248, 0.72)',
+                color: 'var(--ink-secondary)',
                 marginBottom: '1.5rem',
               }}
             >
@@ -231,13 +220,13 @@ export default function DualPractice({ onNavigate }) {
             <div
               style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
+                fontSize: '0.74rem',
                 letterSpacing: '0.06em',
-                color: 'var(--section-dark-muted)',
+                color: 'var(--accent)',
                 textTransform: 'uppercase',
               }}
             >
-              EDITORIAL PORTRAITURE • COMMERCIAL MEDIA • LIFESTYLE • COLOR SCIENCE
+              Editorial Portraiture • Commercial Media • Lifestyle • Color Science
             </div>
           </div>
         </div>

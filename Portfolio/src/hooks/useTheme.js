@@ -5,8 +5,8 @@ export function useTheme() {
     if (typeof window === 'undefined') return 'light'
     const stored = localStorage.getItem('theme')
     if (stored === 'light' || stored === 'dark') return stored
-    // Default to light (warm paper editorial aesthetic) or user preference
-    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    // Default explicitly to clean white theme
+    return 'light'
   })
 
   useEffect(() => {

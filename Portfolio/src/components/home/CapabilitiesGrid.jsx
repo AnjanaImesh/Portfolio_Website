@@ -1,30 +1,38 @@
 import React from 'react'
 
 export default function CapabilitiesGrid() {
-  const capabilities = [
+  const capabilityColumns = [
     {
-      group: 'ENGINEERING',
-      sub: 'SYSTEMS & ARCHITECTURE',
-      items: [
-        'Frontend Architecture (React & Next.js)',
-        'Backend & REST APIs (Java / Spring Boot)',
-        'Node.js & Express / NestJS',
-        'Database Modeling (PostgreSQL, MySQL, MongoDB)',
-        'Containerization & Microservices (Docker)',
-        'Web Performance & Core Vitals',
-      ],
+      index: '01',
+      title: 'Frontend Systems',
+      subtitle: 'React & Modern Web',
+      description:
+        'Engineering responsive, accessible interfaces with React, Next.js, strict design tokens, and optimized Core Web Vitals.',
+      tags: ['React', 'Next.js', 'TypeScript', 'WCAG 2.1'],
     },
     {
-      group: 'VISUAL PRACTICE',
-      sub: 'LIGHT & NARRATIVE',
-      items: [
-        'Editorial & Milestone Portraiture',
-        'Commercial Visual Production (Onex Media)',
-        'Academic Convocation Framing (GradPortraits LK)',
-        'Lifestyle & Documentary Weddings (Moonory)',
-        'Color Science & RAW Post-Production',
-        'Brand Direction & Creative Media Strategy',
-      ],
+      index: '02',
+      title: 'Backend & APIs',
+      subtitle: 'Spring Boot & Node.js',
+      description:
+        'Developing resilient RESTful microservices, normalized relational schemas in PostgreSQL/MySQL, and secure JWT authentication.',
+      tags: ['Java / Spring Boot', 'Node.js', 'PostgreSQL', 'Docker'],
+    },
+    {
+      index: '03',
+      title: 'Commercial Media',
+      subtitle: 'Onex Media Direction',
+      description:
+        'Directing high-impact commercial visual campaigns, event coverage, and brand cinematography with deliberate color grading.',
+      tags: ['Commercial Video', 'Live Stage', 'Brand Direction'],
+    },
+    {
+      index: '04',
+      title: 'Portraiture & Wedding',
+      subtitle: 'GradPortraits & Moonory',
+      description:
+        'Capturing university milestones and unscripted natural-light weddings with directional lighting and documentary truth.',
+      tags: ['Convocation', 'Documentary Wedding', 'Natural Light'],
     },
   ]
 
@@ -32,147 +40,102 @@ export default function CapabilitiesGrid() {
     <section
       id="capabilities"
       style={{
-        paddingTop: 'clamp(5rem, 9vw, 8.5rem)',
-        paddingBottom: 'clamp(5rem, 9vw, 8.5rem)',
-        borderBottom: '1px solid var(--border)',
-        backgroundColor: 'var(--bg)',
+        paddingTop: 'clamp(3rem, 6vw, 5rem)',
+        paddingBottom: 'clamp(3rem, 6vw, 5rem)',
       }}
     >
       <div className="container">
-        {/* Section Header */}
-        <div className="section-header-bar">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index">05</span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              / CAPABILITIES & COMPETENCIES
-            </span>
-          </div>
-
-          <span className="section-meta-right">PRODUCTION-TESTED SKILLS</span>
-        </div>
-
-        {/* Headline */}
-        <div style={{ marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
-          <h2 className="display-section" style={{ maxWidth: '820px', margin: 0 }}>
-            DISCIPLINED EXECUTION <br />
-            ACROSS CODE AND CRAFT.
+        {/* Centered Heading (As in Visual Reference) */}
+        <div className="section-header-centered">
+          <div className="section-pill-tag">Capabilities</div>
+          <h2 className="display-section" style={{ margin: '0 auto 1rem auto' }}>
+            Disciplined execution across code and camera.
           </h2>
+          <p className="body-text" style={{ maxWidth: '620px', margin: '0 auto' }}>
+            Two distinct disciplines sharing one high standard: clean architecture, mathematical rigor, and visual empathy.
+          </p>
         </div>
 
-        {/* ── Open Grouped Lists (No Cards / No Box UI) ── */}
+        {/* ── Flat 4-Column Row (No Cards, As in Visual Reference) ── */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr',
-            gap: 'clamp(3rem, 6vw, 6rem)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 'clamp(2rem, 3.5vw, 3rem)',
             borderTop: '1px solid var(--border)',
-            paddingTop: 'clamp(2.5rem, 5vw, 4rem)',
+            paddingTop: 'clamp(2.5rem, 4vw, 3.5rem)',
           }}
-          className="capabilities-two-col"
+          className="capabilities-flat-grid"
         >
-          {capabilities.map((cap, idx) => (
-            <div key={cap.group}>
+          {capabilityColumns.map((col) => (
+            <div key={col.title} style={{ display: 'flex', flexDirection: 'column' }}>
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: '0.8rem',
-                  marginBottom: '1.2rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.74rem',
+                  letterSpacing: '0.1em',
+                  color: 'var(--accent)',
+                  fontWeight: 650,
+                  marginBottom: '0.8rem',
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.78rem',
-                    color: idx === 0 ? 'var(--ink)' : 'var(--accent)',
-                    fontWeight: 650,
-                  }}
-                >
-                  [0{idx + 1}]
-                </span>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)',
-                    fontWeight: 800,
-                    letterSpacing: '-0.03em',
-                    color: 'var(--ink)',
-                    textTransform: 'uppercase',
-                    margin: 0,
-                  }}
-                >
-                  {cap.group}
-                </h3>
+                [{col.index}]
               </div>
+
+              <h3
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  color: 'var(--ink)',
+                  marginBottom: '0.25rem',
+                }}
+              >
+                {col.title}
+              </h3>
 
               <div
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.1em',
+                  fontSize: '0.74rem',
+                  letterSpacing: '0.04em',
                   color: 'var(--ink-muted)',
                   textTransform: 'uppercase',
-                  marginBottom: '2rem',
+                  marginBottom: '0.85rem',
                 }}
               >
-                {cap.sub}
+                {col.subtitle}
               </div>
 
-              {/* Minimal Clean List */}
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {cap.items.map((item) => (
-                  <li
-                    key={item}
+              <p
+                className="body-sm"
+                style={{
+                  color: 'var(--ink-secondary)',
+                  lineHeight: 1.6,
+                  marginBottom: '1.2rem',
+                }}
+              >
+                {col.description}
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: 'auto' }}>
+                {col.tags.map((t) => (
+                  <span
+                    key={t}
                     style={{
-                      borderTop: '1px solid var(--border)',
-                      padding: '1rem 0',
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '1.02rem',
-                      color: 'var(--ink-secondary)',
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      justifyContent: 'space-between',
-                      transition: 'color var(--duration-fast) ease, transform var(--duration-fast) ease',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.68rem',
+                      color: 'var(--ink-muted)',
                     }}
-                    className="capability-item"
                   >
-                    <span>{item}</span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.75rem',
-                        color: 'var(--ink-muted)',
-                      }}
-                    >
-                      / VERIFIED
-                    </span>
-                  </li>
+                    • {t}
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (min-width: 860px) {
-          .capabilities-two-col {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-        .capability-item:hover {
-          color: var(--ink) !important;
-          padding-left: 0.5rem;
-        }
-      `}</style>
     </section>
   )
 }

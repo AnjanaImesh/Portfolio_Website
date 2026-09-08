@@ -183,13 +183,12 @@ export default function MoonoryPage({ onNavigate }) {
           </div>
         </div>
 
-        {/* Inquire Action Strip */}
+        {/* Inquire Action Strip — Open Layout */}
         <div
           style={{
             marginTop: 'clamp(4rem, 7vw, 6.5rem)',
-            padding: 'clamp(2rem, 4vw, 3.5rem)',
-            backgroundColor: 'var(--bg-secondary)',
-            border: '1px solid var(--border)',
+            paddingTop: '2.5rem',
+            borderTop: '1px solid var(--border)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -212,17 +211,17 @@ export default function MoonoryPage({ onNavigate }) {
             >
               PLAN A SESSION WITH MOONORY
             </h2>
-            <p className="body-text" style={{ maxWidth: '540px' }}>
+            <p className="body-text" style={{ maxWidth: '540px', margin: 0 }}>
               Inquire about upcoming intimate weddings, couple documentary sessions, or personal lifestyle stories.
             </p>
           </div>
 
           <button
             onClick={() => onNavigate?.('/contact')}
-            className="btn-editorial"
-            style={{ padding: '0.95rem 2rem' }}
+            className="btn-pill"
           >
-            Inquire for Moonory Session ↗
+            <span>Inquire for Moonory Session</span>
+            <span>↗</span>
           </button>
         </div>
       </div>

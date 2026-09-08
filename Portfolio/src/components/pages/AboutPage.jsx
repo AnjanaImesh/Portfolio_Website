@@ -33,23 +33,26 @@ export default function AboutPage({ onNavigate }) {
     <div style={{ paddingTop: 'clamp(6.5rem, 10vw, 9rem)', minHeight: '80vh', backgroundColor: 'var(--bg)' }}>
       <div className="container">
         {/* Header Bar */}
-        <div className="section-header-bar">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index">ABOUT</span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              / CAREER & PERSONAL PRACTICE
-            </span>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '1.2rem',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          <div>
+            <div className="section-pill-tag" style={{ marginBottom: '0.6rem' }}>About</div>
+            <h1 className="display-section" style={{ margin: 0 }}>
+              Career & creative discipline.
+            </h1>
           </div>
 
-          <span className="section-meta-right">ANJANA IMESH</span>
+          <span className="meta-tag">ANJANA IMESH</span>
         </div>
 
         {/* ── Open Composition: Editorial Statement (Left) + Candid Arch Crop (Right) ── */}
@@ -122,22 +125,22 @@ export default function AboutPage({ onNavigate }) {
               </p>
             </div>
 
-            <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1.2rem', flexWrap: 'wrap', alignItems: 'center' }}>
               <a
                 href={personal.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-sharp"
+                className="btn-pill"
               >
-                <span>DOWNLOAD CURRICULUM VITAE (PDF)</span>
+                <span>Download Curriculum Vitae (PDF)</span>
                 <span>↗</span>
               </a>
 
               <a
                 href={`mailto:${personal.email}`}
-                className="btn-sharp-ghost"
+                className="btn-pill-subtle"
               >
-                <span>DIRECT EMAIL</span>
+                <span>Direct Email</span>
                 <span>→</span>
               </a>
             </div>

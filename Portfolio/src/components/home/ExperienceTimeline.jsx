@@ -1,106 +1,121 @@
 import React from 'react'
-import { careerTimeline, personal } from '../../data/portfolioData.js'
 
 export default function ExperienceTimeline({ onNavigate }) {
+  const timeline = [
+    {
+      period: '2026 — Present',
+      role: 'Associate Software Engineer',
+      context: 'Enterprise Software Engineering',
+      description:
+        'Engineering resilient full-stack web platforms, RESTful APIs, and responsive frontends in Java/Spring Boot and modern React. Prioritizing database normalization, clean architecture, and test-driven reliability.',
+      isCurrent: true,
+    },
+    {
+      period: 'Dec 2025 — July 2026',
+      role: 'Software Engineering Intern',
+      context: 'Product Development & Full-Stack Systems',
+      description:
+        'Developed full-stack features, engineered REST API endpoints, designed relational database schemas, and actively contributed to sprint deliverables and team code reviews.',
+      isCurrent: false,
+    },
+    {
+      period: '2023 — 2026',
+      role: 'BSc (Hons) in Information Technology',
+      context: 'Software Engineering Specialization',
+      description:
+        'Rigorous study of Distributed Systems, Object-Oriented Architecture, Database Engineering, Algorithms, and Human-Computer Interaction.',
+      isCurrent: false,
+    },
+  ]
+
   return (
     <section
       id="experience"
       style={{
-        paddingTop: 'var(--pad-section)',
-        paddingBottom: 'var(--pad-section)',
-        borderBottom: '1px solid var(--border)',
-        backgroundColor: 'var(--bg)',
+        paddingTop: 'clamp(3.5rem, 6vw, 6rem)',
+        paddingBottom: 'clamp(3.5rem, 6vw, 6rem)',
       }}
     >
       <div className="container">
         {/* Section Header */}
-        <div className="section-header-bar">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index">04</span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              / CHRONOLOGY & TRAJECTORY
-            </span>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '1.2rem',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          <div>
+            <div className="section-pill-tag" style={{ marginBottom: '0.6rem' }}>Trajectory</div>
+            <h2 className="display-section" style={{ margin: 0 }}>
+              Career & milestones.
+            </h2>
           </div>
 
-          <span className="section-meta-right">ENGINEERING & CREATIVE PRACTICE</span>
+          <span className="meta-tag">2023 — PRESENT</span>
         </div>
 
-        <div style={{ marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
-          <h2 className="display-section" style={{ maxWidth: '800px', marginBottom: '1rem' }}>
-            A PROGRESSIVE PRACTICE <br />
-            OF MAKING THINGS WELL.
-          </h2>
-          <p className="body-text" style={{ maxWidth: '640px' }}>
-            Progressing through software engineering studies and intensive product internship into an
-            Associate Software Engineer, while concurrently establishing and directing recognized visual creative practices.
-          </p>
-        </div>
-
-        {/* Editorial Timeline Entries */}
+        {/* ── Flat Timeline Rows (No Cards, No Colorful Icons) ── */}
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {careerTimeline.map((item, idx) => (
+          {timeline.map((item, idx) => (
             <div
               key={idx}
               style={{
                 borderTop: '1px solid var(--border)',
-                paddingTop: '2rem',
-                paddingBottom: '2.5rem',
+                paddingTop: '1.8rem',
+                paddingBottom: '2.2rem',
                 display: 'grid',
                 gridTemplateColumns: '1fr',
                 gap: '1.2rem',
               }}
-              className="timeline-row"
+              className="timeline-flat-row"
             >
-              {/* Period Column */}
+              {/* Period */}
               <div>
                 <span
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.82rem',
-                    letterSpacing: '0.08em',
-                    color: idx === 0 ? 'var(--accent)' : 'var(--ink-muted)',
-                    fontWeight: idx === 0 ? 650 : 500,
+                    fontSize: '0.84rem',
+                    color: item.isCurrent ? 'var(--accent)' : 'var(--ink-muted)',
+                    fontWeight: item.isCurrent ? 650 : 500,
                   }}
                 >
                   {item.period}
                 </span>
-                {idx === 0 && (
+                {item.isCurrent && (
                   <span
                     style={{
                       display: 'inline-block',
                       marginLeft: '0.6rem',
-                      padding: '0.2rem 0.5rem',
+                      padding: '0.2rem 0.6rem',
                       backgroundColor: 'var(--accent-muted)',
-                      border: '1px solid var(--accent)',
                       color: 'var(--accent)',
                       fontSize: '0.68rem',
                       fontFamily: 'var(--font-mono)',
-                      borderRadius: 'var(--radius-none)',
+                      borderRadius: 'var(--radius-pill)',
+                      fontWeight: 600,
                     }}
                   >
-                    CURRENT LEVEL
+                    CURRENT
                   </span>
                 )}
               </div>
 
-              {/* Role & Context Column */}
+              {/* Role & Context */}
               <div>
                 <h3
                   style={{
                     fontFamily: 'var(--font-sans)',
-                    fontSize: 'clamp(1.25rem, 2.2vw, 1.6rem)',
+                    fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     color: 'var(--ink)',
-                    marginBottom: '0.3rem',
+                    marginBottom: '0.25rem',
                   }}
                 >
                   {item.role}
@@ -108,58 +123,30 @@ export default function ExperienceTimeline({ onNavigate }) {
                 <div
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.78rem',
-                    color: 'var(--ink-secondary)',
-                    letterSpacing: '0.04em',
+                    fontSize: '0.76rem',
+                    color: 'var(--ink-muted)',
                     textTransform: 'uppercase',
                   }}
                 >
-                  {item.context} • {item.location}
+                  {item.context}
                 </div>
               </div>
 
-              {/* Contribution Description */}
+              {/* Description */}
               <div>
-                <p className="body-text" style={{ color: 'var(--ink-secondary)' }}>
+                <p className="body-sm" style={{ color: 'var(--ink-secondary)', margin: 0 }}>
                   {item.description}
                 </p>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Action Link to Resume */}
-        <div
-          style={{
-            marginTop: '2rem',
-            paddingTop: '2rem',
-            borderTop: '1px solid var(--border)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '1rem',
-          }}
-        >
-          <span className="meta-tag">DETAILED CREDENTIALS & REFERENCES</span>
-          <a
-            href={personal.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-arrow"
-          >
-            <span>Download Complete Curriculum Vitae (PDF)</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 17 17 7M17 7H7M17 7v10" />
-            </svg>
-          </a>
-        </div>
       </div>
 
       <style>{`
         @media (min-width: 860px) {
-          .timeline-row {
-            grid-template-columns: 240px 320px 1fr !important;
+          .timeline-flat-row {
+            grid-template-columns: 240px 300px 1fr !important;
             align-items: baseline;
             gap: 2rem !important;
           }

@@ -41,44 +41,37 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="section-dark-block"
       style={{
-        paddingTop: 'clamp(5.5rem, 10vw, 9.5rem)',
-        paddingBottom: 'clamp(5.5rem, 10vw, 9.5rem)',
+        paddingTop: 'clamp(5rem, 9vw, 9rem)',
+        paddingBottom: 'clamp(5rem, 9vw, 9rem)',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid var(--section-dark-border)',
+        borderTop: '1px solid var(--border)',
+        backgroundColor: 'var(--bg)',
       }}
     >
       <div className="container">
         {/* Section Header */}
         <div
-          className="section-header-bar"
-          style={{ borderBottomColor: 'var(--section-dark-border)' }}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '1.2rem',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
         >
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index" style={{ color: 'var(--accent)' }}>
-              06
-            </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--section-dark-muted)',
-              }}
-            >
-              / DIRECT TRANSMISSION & INQUIRY
-            </span>
+          <div>
+            <div className="section-pill-tag" style={{ marginBottom: '0.6rem' }}>Contact</div>
+            <h1 className="display-section" style={{ margin: 0 }}>
+              Let's talk about your next project.
+            </h1>
           </div>
 
-          <span
-            className="section-meta-right"
-            style={{ color: 'var(--section-dark-muted)' }}
-          >
-            RESPONSE WITHIN 24 HOURS
-          </span>
+          <span className="meta-tag">RESPONSE WITHIN 24 HOURS</span>
         </div>
 
         {/* 2-Column Editorial Contact Grid */}
@@ -95,8 +88,8 @@ export default function ContactSection() {
             <h2
               className="display-section"
               style={{
-                color: 'var(--section-dark-ink)',
-                marginBottom: '1.8rem',
+                color: 'var(--ink)',
+                marginBottom: '1.5rem',
                 lineHeight: 1.02,
                 maxWidth: '620px',
               }}
@@ -107,9 +100,9 @@ export default function ContactSection() {
             <p
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '1.02rem',
+                fontSize: '1rem',
                 lineHeight: 1.7,
-                color: 'rgba(250, 250, 248, 0.78)',
+                color: 'var(--ink-secondary)',
                 maxWidth: '520px',
                 marginBottom: '2.5rem',
               }}
@@ -119,8 +112,8 @@ export default function ContactSection() {
             </p>
 
             {/* Direct Channels with Clean Hairline Rules */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem', marginBottom: '2.5rem' }}>
-              <div style={{ borderTop: '1px solid var(--section-dark-border)', paddingTop: '1.2rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem', marginBottom: '2.5rem' }}>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.2rem' }}>
                 <span
                   style={{
                     fontFamily: 'var(--font-mono)',
@@ -128,7 +121,7 @@ export default function ContactSection() {
                     letterSpacing: '0.1em',
                     color: 'var(--accent)',
                     display: 'block',
-                    marginBottom: '0.4rem',
+                    marginBottom: '0.35rem',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -140,26 +133,26 @@ export default function ContactSection() {
                     fontFamily: 'var(--font-sans)',
                     fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)',
                     fontWeight: 650,
-                    color: '#FAFAF8',
+                    color: 'var(--ink)',
                     letterSpacing: '-0.02em',
                     transition: 'color var(--duration-fast) ease',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#FAFAF8')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink)')}
                 >
                   {personal.email}
                 </a>
               </div>
 
-              <div style={{ borderTop: '1px solid var(--section-dark-border)', paddingTop: '1.2rem' }}>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.2rem' }}>
                 <span
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.72rem',
                     letterSpacing: '0.1em',
-                    color: 'var(--section-dark-muted)',
+                    color: 'var(--ink-muted)',
                     display: 'block',
-                    marginBottom: '0.4rem',
+                    marginBottom: '0.35rem',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -168,8 +161,8 @@ export default function ContactSection() {
                 <div
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.92rem',
-                    color: 'rgba(250, 250, 248, 0.9)',
+                    fontSize: '0.9rem',
+                    color: 'var(--ink)',
                   }}
                 >
                   {personal.location} (Asia/Colombo UTC+5:30)
@@ -178,13 +171,13 @@ export default function ContactSection() {
             </div>
 
             {/* Verified Network Links */}
-            <div style={{ borderTop: '1px solid var(--section-dark-border)', paddingTop: '1.8rem' }}>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.6rem' }}>
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.72rem',
                   letterSpacing: '0.1em',
-                  color: 'var(--section-dark-muted)',
+                  color: 'var(--ink-muted)',
                   display: 'block',
                   marginBottom: '1rem',
                   textTransform: 'uppercase',
@@ -199,36 +192,28 @@ export default function ContactSection() {
                     href={s.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.8rem',
-                      letterSpacing: '0.06em',
-                      color: 'rgba(250, 250, 248, 0.7)',
-                      textTransform: 'uppercase',
-                      transition: 'color var(--duration-fast) ease',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(250, 250, 248, 0.7)')}
+                    className="link-text-arrow"
+                    style={{ fontSize: '0.82rem' }}
                   >
                     <span>{s.label}</span>
-                    <span style={{ marginLeft: '0.25rem', color: 'var(--accent)' }}>↗</span>
+                    <span style={{ fontSize: '0.76rem', color: 'var(--accent)' }}>↗</span>
                   </a>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Minimalist Underline Form (No Box Container) */}
+          {/* Right Column: Clean Minimalist Underline Form (No Box Container) */}
           <div>
-            <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              {/* Inquiry Scope Selection */}
+            <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.8rem' }}>
+              {/* Inquiry Scope Selection: Soft Minimal Pill Chips */}
               <div>
                 <span
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.74rem',
+                    fontSize: '0.72rem',
                     letterSpacing: '0.1em',
-                    color: 'var(--section-dark-muted)',
+                    color: 'var(--ink-muted)',
                     display: 'block',
                     marginBottom: '0.8rem',
                     textTransform: 'uppercase',
@@ -237,29 +222,31 @@ export default function ContactSection() {
                   SELECT INQUIRY DOMAIN
                 </span>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  {scopes.map((scope) => (
-                    <button
-                      key={scope}
-                      type="button"
-                      onClick={() => setInquiryType(scope)}
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.74rem',
-                        letterSpacing: '0.06em',
-                        textTransform: 'uppercase',
-                        padding: '0.45rem 0.85rem',
-                        border: '1px solid',
-                        borderColor: inquiryType === scope ? 'var(--accent)' : 'var(--section-dark-border)',
-                        backgroundColor: inquiryType === scope ? 'var(--accent-muted)' : 'transparent',
-                        color: inquiryType === scope ? 'var(--accent)' : 'rgba(250, 250, 248, 0.7)',
-                        borderRadius: '0px',
-                        cursor: 'pointer',
-                        transition: 'all var(--duration-fast) ease',
-                      }}
-                    >
-                      {scope}
-                    </button>
-                  ))}
+                  {scopes.map((scope) => {
+                    const isSelected = inquiryType === scope
+                    return (
+                      <button
+                        key={scope}
+                        type="button"
+                        onClick={() => setInquiryType(scope)}
+                        style={{
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '0.78rem',
+                          fontWeight: 500,
+                          padding: '0.45rem 1rem',
+                          border: '1px solid',
+                          borderColor: isSelected ? 'var(--ink)' : 'var(--border)',
+                          backgroundColor: isSelected ? 'var(--ink)' : 'var(--bg-subtle)',
+                          color: isSelected ? 'var(--bg)' : 'var(--ink-secondary)',
+                          borderRadius: 'var(--radius-pill)',
+                          cursor: 'pointer',
+                          transition: 'all var(--duration-fast) ease',
+                        }}
+                      >
+                        {scope}
+                      </button>
+                    )
+                  })}
                 </div>
                 <input type="hidden" name="inquiry_type" value={inquiryType} />
               </div>
@@ -270,11 +257,11 @@ export default function ContactSection() {
                   htmlFor="contact-name"
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
+                    fontSize: '0.7rem',
                     letterSpacing: '0.1em',
-                    color: 'var(--section-dark-muted)',
+                    color: 'var(--ink-muted)',
                     display: 'block',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.4rem',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -285,21 +272,22 @@ export default function ContactSection() {
                   type="text"
                   name="user_name"
                   required
-                  placeholder="e.g. Elena Silva / Acme Corp"
+                  placeholder="e.g. Elena Silva / Acme Studio"
                   style={{
                     width: '100%',
                     background: 'none',
                     border: 'none',
-                    borderBottom: '1px solid var(--section-dark-border)',
-                    padding: '0.75rem 0',
+                    borderBottom: '1px solid var(--border)',
+                    padding: '0.7rem 0',
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '1.05rem',
-                    color: '#FAFAF8',
+                    fontSize: '1rem',
+                    color: 'var(--ink)',
                     outline: 'none',
                     borderRadius: '0px',
+                    transition: 'border-color 0.2s ease',
                   }}
                   onFocus={(e) => (e.target.style.borderBottomColor = 'var(--accent)')}
-                  onBlur={(e) => (e.target.style.borderBottomColor = 'var(--section-dark-border)')}
+                  onBlur={(e) => (e.target.style.borderBottomColor = 'var(--border)')}
                 />
               </div>
 
@@ -308,11 +296,11 @@ export default function ContactSection() {
                   htmlFor="contact-email"
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
+                    fontSize: '0.7rem',
                     letterSpacing: '0.1em',
-                    color: 'var(--section-dark-muted)',
+                    color: 'var(--ink-muted)',
                     display: 'block',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.4rem',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -328,16 +316,17 @@ export default function ContactSection() {
                     width: '100%',
                     background: 'none',
                     border: 'none',
-                    borderBottom: '1px solid var(--section-dark-border)',
-                    padding: '0.75rem 0',
+                    borderBottom: '1px solid var(--border)',
+                    padding: '0.7rem 0',
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '1.05rem',
-                    color: '#FAFAF8',
+                    fontSize: '1rem',
+                    color: 'var(--ink)',
                     outline: 'none',
                     borderRadius: '0px',
+                    transition: 'border-color 0.2s ease',
                   }}
                   onFocus={(e) => (e.target.style.borderBottomColor = 'var(--accent)')}
-                  onBlur={(e) => (e.target.style.borderBottomColor = 'var(--section-dark-border)')}
+                  onBlur={(e) => (e.target.style.borderBottomColor = 'var(--border)')}
                 />
               </div>
 
@@ -346,11 +335,11 @@ export default function ContactSection() {
                   htmlFor="contact-message"
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
+                    fontSize: '0.7rem',
                     letterSpacing: '0.1em',
-                    color: 'var(--section-dark-muted)',
+                    color: 'var(--ink-muted)',
                     display: 'block',
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.4rem',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -366,71 +355,59 @@ export default function ContactSection() {
                     width: '100%',
                     background: 'none',
                     border: 'none',
-                    borderBottom: '1px solid var(--section-dark-border)',
-                    padding: '0.75rem 0',
+                    borderBottom: '1px solid var(--border)',
+                    padding: '0.7rem 0',
                     fontFamily: 'var(--font-sans)',
-                    fontSize: '1.05rem',
-                    color: '#FAFAF8',
+                    fontSize: '1rem',
+                    color: 'var(--ink)',
                     outline: 'none',
                     borderRadius: '0px',
                     resize: 'vertical',
+                    transition: 'border-color 0.2s ease',
                   }}
                   onFocus={(e) => (e.target.style.borderBottomColor = 'var(--accent)')}
-                  onBlur={(e) => (e.target.style.borderBottomColor = 'var(--section-dark-border)')}
+                  onBlur={(e) => (e.target.style.borderBottomColor = 'var(--border)')}
                 />
               </div>
 
-              {/* Submit Trigger & Status Feedback */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginTop: '1rem' }}>
+              {/* Submit Trigger — Minimal Pill CTA */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginTop: '0.8rem' }}>
                 <button
                   type="submit"
                   disabled={sending}
+                  className="btn-pill"
                   style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.8rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.84rem',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    fontWeight: 650,
-                    padding: '0.9rem 1.8rem',
-                    backgroundColor: 'var(--accent)',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    borderRadius: '0px',
-                    cursor: sending ? 'not-allowed' : 'pointer',
-                    transition: 'all var(--duration-fast) ease',
                     opacity: sending ? 0.6 : 1,
+                    cursor: sending ? 'not-allowed' : 'pointer',
                   }}
                 >
-                  <span>{sending ? 'DISPATCHING...' : 'DISPATCH MESSAGE'}</span>
+                  <span>{sending ? 'Dispatching...' : 'Dispatch Message'}</span>
                   <span>→</span>
                 </button>
 
                 {status === 'success' && (
                   <span
                     style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.8rem',
-                      letterSpacing: '0.06em',
-                      color: '#4BB543',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.84rem',
+                      color: '#2E7D32',
+                      fontWeight: 500,
                     }}
                   >
-                    ✓ MESSAGE TRANSMITTED DIRECTLY.
+                    ✓ Message transmitted directly.
                   </span>
                 )}
 
                 {status === 'error' && (
                   <span
                     style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.8rem',
-                      letterSpacing: '0.06em',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '0.84rem',
                       color: 'var(--accent)',
+                      fontWeight: 500,
                     }}
                   >
-                    ✕ FAILED TO DISPATCH. PLEASE EMAIL DIRECTLY.
+                    ✕ Failed to dispatch. Please email directly.
                   </span>
                 )}
               </div>

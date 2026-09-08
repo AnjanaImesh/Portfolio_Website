@@ -1,323 +1,267 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { engineeringProjects } from '../../data/portfolioData.js'
 
 export default function SelectedWork({ onNavigate }) {
+  const [activeProjectId, setActiveProjectId] = useState(engineeringProjects[0]?.id || null)
+
+  const activeProject = engineeringProjects.find((p) => p.id === activeProjectId) || engineeringProjects[0]
+
   return (
     <section
-      id="selected-work"
+      id="work"
       style={{
-        paddingTop: 'clamp(5rem, 9vw, 9rem)',
-        paddingBottom: 'clamp(5rem, 9vw, 9.5rem)',
-        position: 'relative',
-        backgroundColor: 'var(--bg)',
-        borderBottom: '1px solid var(--border)',
+        paddingTop: 'clamp(3.5rem, 6vw, 6rem)',
+        paddingBottom: 'clamp(3.5rem, 6vw, 6rem)',
       }}
     >
       <div className="container">
-        {/* Section Header Bar */}
-        <div className="section-header-bar">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index">02</span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              / SELECTED SYSTEMS & PRODUCT ARCHITECTURE
-            </span>
-          </div>
-
-          <span className="section-meta-right">
-            04 PRODUCTION CASE BREAKDOWNS
-          </span>
-        </div>
-
-        {/* Section Title & Philosophy */}
+        {/* Section Header */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'baseline',
-            marginBottom: 'clamp(3.5rem, 7vw, 6rem)',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '1.2rem',
             flexWrap: 'wrap',
-            gap: '1.5rem',
+            gap: '1rem',
           }}
         >
-          <h2 className="display-section" style={{ maxWidth: '760px', margin: 0 }}>
-            SYSTEMS BUILT FOR RESILIENCE.
-          </h2>
+          <div>
+            <div className="section-pill-tag" style={{ marginBottom: '0.6rem' }}>Selected Work</div>
+            <h2 className="display-section" style={{ margin: 0 }}>
+              Recent engineering projects.
+            </h2>
+          </div>
 
-          <p
-            className="body-text"
-            style={{
-              maxWidth: '440px',
-              fontSize: '0.94rem',
-              color: 'var(--ink-secondary)',
-              margin: 0,
-            }}
-          >
-            Engineering distributed backend architectures, normalized database models, and responsive web platforms.
-            Open case breakdowns with verified outcomes.
-          </p>
-        </div>
-
-        {/* ── Open Editorial Projects List (No Box Cards / No Drop Shadows) ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(4.5rem, 8vw, 7.5rem)' }}>
-          {engineeringProjects.map((project, idx) => {
-            const isEven = idx % 2 === 0
-
-            return (
-              <article
-                key={project.id}
-                style={{
-                  borderTop: '1px solid var(--border)',
-                  paddingTop: 'clamp(2rem, 4vw, 3rem)',
-                }}
-                className="project-open-entry"
-              >
-                {/* Meta Top Line */}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    marginBottom: '1.5rem',
-                    flexWrap: 'wrap',
-                    gap: '1rem',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '1rem',
-                        fontWeight: 700,
-                        color: 'var(--accent)',
-                      }}
-                    >
-                      {project.index}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.78rem',
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: 'var(--ink-secondary)',
-                      }}
-                    >
-                      {project.category}
-                    </span>
-                  </div>
-
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.78rem',
-                      letterSpacing: '0.08em',
-                      color: 'var(--ink-muted)',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    {project.role} • {project.period}
-                  </span>
-                </div>
-
-                {/* 2-Column Asymmetric Open Layout: Narrative & Open Media */}
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr',
-                    gap: 'clamp(2rem, 4vw, 4rem)',
-                    alignItems: 'start',
-                  }}
-                  className={`project-content-grid ${isEven ? 'layout-standard' : 'layout-reversed'}`}
-                >
-                  {/* Text & Specs Column */}
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <h3
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(1.8rem, 3.8vw, 3rem)',
-                        fontWeight: 800,
-                        letterSpacing: '-0.035em',
-                        lineHeight: 1.05,
-                        color: 'var(--ink)',
-                        marginBottom: '0.6rem',
-                      }}
-                    >
-                      {project.title}
-                    </h3>
-
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.82rem',
-                        color: 'var(--ink-muted)',
-                        marginBottom: '1.8rem',
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {project.subtitle}
-                    </p>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
-                      <div>
-                        <span className="coord-mark" style={{ display: 'block', marginBottom: '0.3rem', color: 'var(--accent)' }}>
-                          PROBLEM STATEMENT
-                        </span>
-                        <p className="body-text" style={{ fontSize: '0.94rem', color: 'var(--ink-secondary)', margin: 0 }}>
-                          {project.problem}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className="coord-mark" style={{ display: 'block', marginBottom: '0.3rem' }}>
-                          ENGINEERING ARCHITECTURE
-                        </span>
-                        <p className="body-text" style={{ fontSize: '0.94rem', color: 'var(--ink)', margin: 0 }}>
-                          {project.decisions}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className="coord-mark" style={{ display: 'block', marginBottom: '0.3rem' }}>
-                          MEASURABLE OUTCOME
-                        </span>
-                        <p className="body-sm" style={{ color: 'var(--ink-secondary)', margin: 0 }}>
-                          {project.outcome}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Monospace Tech Stack */}
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.76rem',
-                        letterSpacing: '0.06em',
-                        color: 'var(--ink-muted)',
-                        textTransform: 'uppercase',
-                        paddingTop: '1.2rem',
-                        borderTop: '1px solid var(--border)',
-                        marginBottom: '1.8rem',
-                      }}
-                    >
-                      {project.tech.join(' • ')}
-                    </div>
-
-                    {/* Direct Unboxed Actions */}
-                    <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-sharp"
-                        >
-                          <span>VIEW REPOSITORY</span>
-                          <span>↗</span>
-                        </a>
-                      )}
-
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-sharp-ghost"
-                        >
-                          <span>LIVE SYSTEM</span>
-                          <span>↗</span>
-                        </a>
-                      )}
-
-                      <button
-                        type="button"
-                        onClick={() => onNavigate?.('/work')}
-                        className="link-editorial-underline"
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                      >
-                        <span>FULL ARCHIVE CASE</span>
-                        <span>→</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Open Media Preview (Real Screenshot, No Box Card / No Shadow) */}
-                  <div style={{ position: 'relative' }}>
-                    <div
-                      className="open-media-frame"
-                      style={{
-                        aspectRatio: '16/10',
-                        width: '100%',
-                      }}
-                    >
-                      <img
-                        src={project.image}
-                        alt={`${project.title} — Technical preview and system architecture`}
-                        loading="lazy"
-                      />
-                    </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        paddingTop: '0.5rem',
-                      }}
-                    >
-                      <span className="coord-mark">SYS_FIG. 0{idx + 1} // {project.title.toUpperCase()}</span>
-                      <span className="coord-mark">{project.period}</span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            )
-          })}
-        </div>
-
-        {/* Bottom Archive Action */}
-        <div
-          style={{
-            marginTop: '5rem',
-            paddingTop: '2rem',
-            borderTop: '1px solid var(--border)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '1.5rem',
-          }}
-        >
-          <span className="coord-mark">COMPLETE SYSTEM ARCHIVE / 2024 — 2026</span>
           <button
             type="button"
             onClick={() => onNavigate?.('/work')}
-            className="btn-sharp"
+            className="link-text-arrow"
           >
-            <span>EXPLORE ALL DOCUMENTED WORK</span>
+            <span>View all projects</span>
             <span>→</span>
           </button>
+        </div>
+
+        {/* ── Minimalist Project List with Hover / Active Preview ── */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: 'clamp(2rem, 4vw, 3.5rem)',
+          }}
+          className="work-dual-layout"
+        >
+          {/* Projects Column */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {engineeringProjects.map((project) => {
+              const isActive = activeProjectId === project.id
+
+              return (
+                <div
+                  key={project.id}
+                  onMouseEnter={() => setActiveProjectId(project.id)}
+                  onClick={() => setActiveProjectId(project.id)}
+                  style={{
+                    borderTop: '1px solid var(--border)',
+                    padding: 'clamp(1.5rem, 2.5vw, 2rem) 0',
+                    cursor: 'pointer',
+                    transition: 'all var(--duration-fast) ease',
+                  }}
+                  className="project-list-entry"
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                      flexWrap: 'wrap',
+                      gap: '0.8rem',
+                      marginBottom: '0.4rem',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.85rem',
+                          color: isActive ? 'var(--accent)' : 'var(--ink-muted)',
+                          fontWeight: 650,
+                        }}
+                      >
+                        {project.index}
+                      </span>
+                      <h3
+                        style={{
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: 'clamp(1.3rem, 2.2vw, 1.7rem)',
+                          fontWeight: 700,
+                          color: isActive ? 'var(--ink)' : 'var(--ink-secondary)',
+                          letterSpacing: '-0.02em',
+                          margin: 0,
+                          transition: 'color var(--duration-fast) ease',
+                        }}
+                      >
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.76rem',
+                          color: 'var(--ink-muted)',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {project.period}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: '1rem',
+                          color: isActive ? 'var(--accent)' : 'var(--ink-muted)',
+                          transition: 'transform var(--duration-fast) ease, color var(--duration-fast) ease',
+                          transform: isActive ? 'translateX(4px)' : 'none',
+                        }}
+                      >
+                        →
+                      </span>
+                    </div>
+                  </div>
+
+                  <p
+                    className="body-sm"
+                    style={{
+                      maxWidth: '560px',
+                      marginBottom: '0.8rem',
+                      marginLeft: '2rem',
+                    }}
+                  >
+                    {project.subtitle} — {project.decisions}
+                  </p>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1.2rem',
+                      marginLeft: '2rem',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.72rem',
+                        color: 'var(--ink-muted)',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      {project.tech.slice(0, 4).join(' • ')}
+                    </span>
+
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="link-text-arrow"
+                        style={{ fontSize: '0.78rem' }}
+                      >
+                        <span>Repo</span>
+                        <span style={{ fontSize: '0.7rem' }}>↗</span>
+                      </a>
+                    )}
+
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="link-text-arrow"
+                        style={{ fontSize: '0.78rem', color: 'var(--accent)' }}
+                      >
+                        <span>Live</span>
+                        <span style={{ fontSize: '0.7rem' }}>↗</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Optional Sleek Preview On Active / Hover (Unboxed, Soft Radius) */}
+          <div
+            style={{
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+            className="work-preview-column"
+          >
+            <div
+              style={{
+                width: '100%',
+                aspectRatio: '16/10',
+                borderRadius: 'var(--radius-card)',
+                overflow: 'hidden',
+                backgroundColor: 'var(--bg-shell)',
+                border: '1px solid var(--border)',
+                position: 'relative',
+              }}
+            >
+              {engineeringProjects.map((p) => (
+                <img
+                  key={p.id}
+                  src={p.image}
+                  alt={p.title}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    opacity: activeProjectId === p.id ? 1 : 0,
+                    transition: 'opacity 0.4s ease, transform 0.6s ease',
+                    transform: activeProjectId === p.id ? 'scale(1)' : 'scale(1.03)',
+                  }}
+                />
+              ))}
+            </div>
+            <div
+              style={{
+                marginTop: '0.75rem',
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.74rem',
+                color: 'var(--ink-muted)',
+              }}
+            >
+              <span>{activeProject.title}</span>
+              <span>{activeProject.category}</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <style>{`
-        @media (min-width: 900px) {
-          .project-content-grid {
-            grid-template-columns: 1.1fr 1fr !important;
+        @media (min-width: 960px) {
+          .work-dual-layout {
+            grid-template-columns: 1.35fr 0.9fr !important;
+            align-items: center !important;
           }
-          .layout-reversed {
-            grid-template-columns: 1fr 1.1fr !important;
-          }
-          .layout-reversed > div:first-child {
-            order: 2;
-          }
-          .layout-reversed > div:last-child {
-            order: 1;
+        }
+        @media (max-width: 959px) {
+          .work-preview-column {
+            display: none !important;
           }
         }
       `}</style>

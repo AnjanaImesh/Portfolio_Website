@@ -11,214 +11,152 @@ export function useGsapAnimations(containerRef, dependencies = []) {
   useEffect(() => {
     if (typeof window === 'undefined' || !containerRef?.current) return
 
-    // 1. Accessibility: Guard for prefers-reduced-motion
+    // Guard for prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) return
 
     const mm = gsap.matchMedia()
     const ctx = gsap.context(() => {
-      // ── DESKTOP MOTION (min-width: 800px) ──────────────────────────
-      mm.add('(min-width: 800px)', () => {
-        // 1. Hero Intentional Choreography
-        const heroLeft = containerRef.current.querySelector('.hero-title-left')
-        const heroRight = containerRef.current.querySelector('.hero-title-right')
-        const heroArc = containerRef.current.querySelector('.hero-svg-arc-accent')
-        const heroOuterArc = containerRef.current.querySelector('.hero-svg-arc-outer')
-        const heroProf = containerRef.current.querySelector('.hero-profession-line')
-        const heroCoord = containerRef.current.querySelectorAll('.hero-coord-line')
+      // ── HERO CHOREOGRAPHED SEQUENCE ────────────────────────────────
+      // Sequence: 1. Portrait/badge -> 2. Name -> 3. Profession -> 4. Statement -> 5. CTAs
+      const heroShell = containerRef.current.querySelector('.section-shell')
+      if (heroShell) {
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-        if (heroLeft && heroRight) {
-          const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+        const avatar = heroShell.querySelector('img')
+        const avatarBadge = heroShell.querySelector('.hero-avatar-badge')
+        const nameLine = heroShell.querySelector('div[style*="text-transform: uppercase"]')
+        const profession = heroShell.querySelector('.display-hero')?.previousElementSibling
+        const headline = heroShell.querySelector('.display-hero')
+        const subheadline = heroShell.querySelector('.subheadline')
+        const ctaButtons = heroShell.querySelectorAll('.btn-pill, .btn-pill-subtle')
+        const partnerStrip = heroShell.querySelector('.partner-strip')
 
-          // 1. Technical coordinate axes enter
-          if (heroCoord.length) {
-            heroTl.fromTo(
-              heroCoord,
-              { opacity: 0 },
-              { opacity: 0.7, duration: 0.5, stagger: 0.1 }
-            )
-          }
+        // 1. Soft entrance of the hero shell
+        heroTl.fromTo(
+          heroShell,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6 }
+        )
 
-          // 2. Large "I BUILD SYSTEMS." reveals
+        // 2. Avatar & Badge
+        if (avatar) {
           heroTl.fromTo(
-            heroLeft,
-            { y: 35, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.65, ease: 'power4.out' },
+            avatar,
+            { scale: 0.85, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.4)' },
+            '-=0.3'
+          )
+        }
+        if (avatarBadge) {
+          heroTl.fromTo(
+            avatarBadge,
+            { scale: 0.8, opacity: 0, y: 4 },
+            { scale: 1, opacity: 1, y: 0, duration: 0.4 },
             '-=0.2'
           )
+        }
 
-          // 3. Large SVG arc draws and rotates subtly
-          if (heroArc || heroOuterArc) {
-            heroTl.fromTo(
-              [heroArc, heroOuterArc].filter(Boolean),
-              { rotation: -20, transformOrigin: '720px 450px', opacity: 0 },
-              { rotation: 0, opacity: 0.75, duration: 0.8, ease: 'power2.out' },
-              '-=0.4'
-            )
-          }
-
-          // 4. Integrated Human Arch Portrait reveals
-          const archFrame = containerRef.current.querySelector('.hero-arch-frame')
-          if (archFrame) {
-            heroTl.fromTo(
-              archFrame,
-              { opacity: 0, scale: 0.95, y: 15 },
-              { opacity: 1, scale: 1, y: 0, duration: 0.75, ease: 'power3.out' },
-              '-=0.6'
-            )
-          }
-
-          // 5. "I FRAME STORIES." enters
+        // 3. Main Statement & Subheadline
+        if (headline) {
           heroTl.fromTo(
-            heroRight,
-            { y: 35, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.65, ease: 'power4.out' },
-            '-=0.5'
-          )
-
-          // 5. Profession line and direct links settle
-          if (heroProf) {
-            heroTl.fromTo(
-              heroProf,
-              { y: 15, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.5 },
-              '-=0.3'
-            )
-          }
-        }
-
-        // 2. Continuous Subtle Parallax on Hero Geometry
-        const heroContainer = containerRef.current.querySelector('#top')
-        const heroSvgArcs = containerRef.current.querySelectorAll('#top circle, #top path')
-        if (heroContainer && heroSvgArcs.length) {
-          gsap.to(heroSvgArcs, {
-            rotation: 25,
-            transformOrigin: '720px 460px',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: heroContainer,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: 1.5,
-            },
-          })
-        }
-
-        // 3. ScrollTrigger for Section Header Bars
-        const sectionHeaders = containerRef.current.querySelectorAll('.section-header-bar')
-        sectionHeaders.forEach((header) => {
-          gsap.fromTo(
-            header,
-            { opacity: 0, y: 18 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: header,
-                start: 'top 88%',
-                toggleActions: 'play none none none',
-              },
-            }
-          )
-        })
-
-        // 4. Text-Driven Project Index Row Transitions
-        const projectRows = containerRef.current.querySelectorAll('.project-index-row')
-        if (projectRows.length) {
-          gsap.fromTo(
-            projectRows,
-            { opacity: 0, y: 24 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.55,
-              stagger: 0.1,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: '#selected-work',
-                start: 'top 78%',
-                toggleActions: 'play none none none',
-              },
-            }
-          )
-        }
-
-        // 5. Visual Practice Typography Rows in Black Section
-        const practiceRows = containerRef.current.querySelectorAll('.practice-row')
-        if (practiceRows.length) {
-          gsap.fromTo(
-            practiceRows,
-            { opacity: 0, y: 25 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.12,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: '#visual-practice',
-                start: 'top 76%',
-                toggleActions: 'play none none none',
-              },
-            }
-          )
-        }
-
-        // 6. Chronology Timeline Rows
-        const timelineRows = containerRef.current.querySelectorAll('.timeline-row')
-        if (timelineRows.length) {
-          gsap.fromTo(
-            timelineRows,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.55,
-              stagger: 0.1,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: '#experience',
-                start: 'top 80%',
-                toggleActions: 'play none none none',
-              },
-            }
-          )
-        }
-      })
-
-      // ── MOBILE MOTION (max-width: 799px) ───────────────────────────
-      mm.add('(max-width: 799px)', () => {
-        const heroLeft = containerRef.current.querySelector('.hero-title-left')
-        const heroRight = containerRef.current.querySelector('.hero-title-right')
-
-        if (heroLeft && heroRight) {
-          gsap.fromTo(
-            [heroLeft, heroRight],
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' }
-          )
-        }
-
-        const projectRows = containerRef.current.querySelectorAll('.project-index-row')
-        projectRows.forEach((row) => {
-          gsap.fromTo(
-            row,
+            headline,
             { opacity: 0, y: 15 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              scrollTrigger: {
-                trigger: row,
-                start: 'top 88%',
-                toggleActions: 'play none none none',
-              },
-            }
+            { opacity: 1, y: 0, duration: 0.55 },
+            '-=0.2'
           )
-        })
+        }
+        if (subheadline) {
+          heroTl.fromTo(
+            subheadline,
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.45 },
+            '-=0.3'
+          )
+        }
+
+        // 4. CTAs
+        if (ctaButtons.length) {
+          heroTl.fromTo(
+            ctaButtons,
+            { opacity: 0, y: 8 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 },
+            '-=0.2'
+          )
+        }
+
+        // 5. Tech/Partner Strip
+        if (partnerStrip) {
+          heroTl.fromTo(
+            partnerStrip,
+            { opacity: 0 },
+            { opacity: 1, duration: 0.5 },
+            '-=0.1'
+          )
+        }
+      }
+
+      // ── SUBTLE SCROLL-TRIGGERED SECTION FADES ──────────────────────
+      const sectionShells = containerRef.current.querySelectorAll('.section-shell:not(#top .section-shell), .section-shell-white')
+      sectionShells.forEach((shell) => {
+        gsap.fromTo(
+          shell,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: shell,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
       })
+
+      // Project Row Stagger Fade
+      const projectRows = containerRef.current.querySelectorAll('.project-list-entry')
+      if (projectRows.length) {
+        gsap.fromTo(
+          projectRows,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '#work',
+              start: 'top 78%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
+
+      // Timeline Row Fade
+      const timelineRows = containerRef.current.querySelectorAll('.timeline-flat-row')
+      if (timelineRows.length) {
+        gsap.fromTo(
+          timelineRows,
+          { opacity: 0, y: 15 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '#experience',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
+      }
     }, containerRef)
 
     // Cleanup triggers and matchMedia on route changes or unmount

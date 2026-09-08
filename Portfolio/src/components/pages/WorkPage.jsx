@@ -14,39 +14,32 @@ export default function WorkPage({ onNavigate }) {
   })
 
   return (
-    <div style={{ paddingTop: 'clamp(6.5rem, 10vw, 9rem)', minHeight: '80vh' }}>
+    <div style={{ paddingTop: 'clamp(6rem, 10vw, 8.5rem)', minHeight: '80vh', backgroundColor: 'var(--bg)' }}>
       <div className="container">
         {/* Breadcrumb / Page Header */}
-        <div className="section-header-bar">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem' }}>
-            <span className="section-index">ARCHIVE</span>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-              }}
-            >
-              / SELECTED ENGINEERING & PRODUCT SYSTEMS
-            </span>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+            borderBottom: '1px solid var(--border)',
+            paddingBottom: '1.2rem',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          <div>
+            <div className="section-pill-tag" style={{ marginBottom: '0.6rem' }}>Engineering Archive</div>
+            <h1 className="display-section" style={{ margin: 0 }}>
+              Full-stack architectures & systems.
+            </h1>
           </div>
 
-          <span className="section-meta-right">{engineeringProjects.length} DOCUMENTED PROJECTS</span>
+          <span className="meta-tag">{engineeringProjects.length} DOCUMENTED PROJECTS</span>
         </div>
 
-        <div style={{ marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}>
-          <h1 className="display-section" style={{ maxWidth: '850px', marginBottom: '1rem' }}>
-            ENGINEERING ARCHIVE.
-          </h1>
-          <p className="body-text" style={{ maxWidth: '640px' }}>
-            Detailed case breakdowns of full-stack web platforms, distributed Spring Boot architectures,
-            MERN applications, and conversion-centered product design systems.
-          </p>
-        </div>
-
-        {/* Filter Bar */}
+        {/* Filter Bar — Soft Minimal Pill Filters */}
         <div
           style={{
             display: 'flex',
@@ -62,17 +55,17 @@ export default function WorkPage({ onNavigate }) {
               key={cat}
               onClick={() => setFilter(cat)}
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.74rem',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                padding: '0.45rem 0.9rem',
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.78rem',
+                fontWeight: 500,
+                letterSpacing: '0.02em',
+                padding: '0.45rem 1rem',
                 border: '1px solid',
                 borderColor: filter === cat ? 'var(--ink)' : 'var(--border)',
-                backgroundColor: filter === cat ? 'var(--ink)' : 'transparent',
+                backgroundColor: filter === cat ? 'var(--ink)' : 'var(--bg-subtle)',
                 color: filter === cat ? 'var(--bg)' : 'var(--ink-secondary)',
                 cursor: 'pointer',
-                borderRadius: 'var(--radius-none)',
+                borderRadius: 'var(--radius-pill)',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -105,8 +98,8 @@ export default function WorkPage({ onNavigate }) {
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '1.2rem',
-                      fontWeight: 750,
+                      fontSize: '1.1rem',
+                      fontWeight: 700,
                       color: 'var(--accent)',
                     }}
                   >
@@ -116,7 +109,7 @@ export default function WorkPage({ onNavigate }) {
                     <h2
                       style={{
                         fontFamily: 'var(--font-sans)',
-                        fontSize: 'clamp(1.7rem, 3.5vw, 2.6rem)',
+                        fontSize: 'clamp(1.6rem, 3.2vw, 2.4rem)',
                         fontWeight: 750,
                         letterSpacing: '-0.03em',
                         color: 'var(--ink)',
@@ -127,7 +120,7 @@ export default function WorkPage({ onNavigate }) {
                     <p
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '0.8rem',
+                        fontSize: '0.78rem',
                         color: 'var(--ink-muted)',
                         marginTop: '0.2rem',
                       }}
@@ -140,7 +133,7 @@ export default function WorkPage({ onNavigate }) {
                 <div
                   style={{
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '0.78rem',
+                    fontSize: '0.76rem',
                     letterSpacing: '0.06em',
                     color: 'var(--ink-muted)',
                     textTransform: 'uppercase',
@@ -164,6 +157,7 @@ export default function WorkPage({ onNavigate }) {
                   style={{
                     aspectRatio: '16/10',
                     border: '1px solid var(--border)',
+                    borderRadius: 'var(--radius-sm)',
                     overflow: 'hidden',
                     backgroundColor: 'var(--bg-subtle)',
                   }}
@@ -220,7 +214,7 @@ export default function WorkPage({ onNavigate }) {
                   <div
                     style={{
                       display: 'flex',
-                      gap: '1.2rem',
+                      gap: '1.5rem',
                       alignItems: 'center',
                       paddingTop: '1rem',
                       borderTop: '1px solid var(--border)',
@@ -228,19 +222,15 @@ export default function WorkPage({ onNavigate }) {
                     }}
                   >
                     {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-arrow">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text-arrow">
                         <span>Repository Source</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M7 17 17 7M17 7H7M17 7v10" />
-                        </svg>
+                        <span>↗</span>
                       </a>
                     )}
                     {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="link-arrow" style={{ color: 'var(--accent)' }}>
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="link-text-arrow" style={{ color: 'var(--accent)' }}>
                         <span>Case Study / Live Link</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M7 17 17 7M17 7H7M17 7v10" />
-                        </svg>
+                        <span>↗</span>
                       </a>
                     )}
                   </div>

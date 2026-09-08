@@ -63,12 +63,10 @@ export default function App() {
         {router.isHome && (
           <>
             <HeroEditorial onNavigate={router.navigate} />
-            <DualPractice onNavigate={router.navigate} />
+            <CapabilitiesGrid />
             <SelectedWork onNavigate={router.navigate} />
             <PhotographyPreview onNavigate={router.navigate} />
             <ExperienceTimeline onNavigate={router.navigate} />
-            <CapabilitiesGrid />
-            <ContactSection />
           </>
         )}
 
